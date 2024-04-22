@@ -7,7 +7,7 @@ To create a binary classification machine learning model to identify fraudulent 
 1. Trans_date_trans_time: Timestamp of the transaction (date and time).  
 2. Cc_num:Unique customer identification number.  
 3. MerchantThe merchant involved in the transaction.  
-4. Category Transaction type (e.g., personal, childcare). b
+4. Category Transaction type (e.g., personal, childcare). 
 5. Amt:Transaction amount.  
 6. First: Cardholder's first name.  
 7. Last Cardholder's last name.  
@@ -56,28 +56,80 @@ As recommended by Scikit Learn[1] Balanced Accuracy is a more appropriate object
 ___
 ## Part 5 Assessing various machine learning algorithms.
 ### 1. Logistic Regression  
-`        Confusion Matrix: LogisticRegression`  
+`         Confusion Matrix: LogisticRegression`  
 `         Predicted Legitimate 0	Predicted Fraudulent 1`  
-`Legitimate 0	138366	                19`  
+`Legitimate 0	138366	                   19`  
 `Fraudulent 1	520	                    25`  
 `Accuracy Score :         0.9961203483768805`  
 `Balanced Accuracy Score: 0.5228671307577285`  
-                        `Classification Report`  
+`                        Classification Report`  
 `              precision    recall  f1-score   support`  
 
            0       1.00      1.00      1.00    138385
            1       0.57      0.05      0.08       545
 
-    accuracy                           1.00    138930
+`    accuracy                           1.00    138930`  
 `   macro avg       0.78      0.52      0.54    138930`
 `weighted avg       0.99      1.00      0.99    138930`
 
+The logistic regression model as illustrated above has a mediocre performance when attempting to predict the fraudulent records in the test set as evidenced by the recall of 0.05 where approximately 1 in every 20 fraudulent transactions were detected.  This low performance is further illustrated by the 0.52 balanced accuracy score achieved.  Based on this result we moved onto a non-linear model.
 
-### 2. Random Forest
+### 2. Support Vector Machine with RBF kernel
+`       Confusion Matrix: SVM with kernal rbf`
+`       Predicted Legitimate 0	Predicted Fraudulent 1`
+`Legitimate 0 138364	               21`  
+`Fraudulent 1 410	               135`  
+`Accuracy Score :          0.9968977182753905`  
+`Balanced Accuracy Score:  0.6237773357336748`  
+`                        Classification Report`  
+`              precision    recall  f1-score   support`
 
-### 3. Support Vector Machine with RBF kernel 
+`           0       1.00      1.00      1.00    138385`  
+`           1       0.87      0.25      0.39       545`  
+
+`    accuracy                           1.00    138930`  
+`   macro avg       0.93      0.62      0.69    138930`  
+`weighted avg       1.00      1.00      1.00    138930`  
+
+The non-linear model chosen was based on a Support Vector Machine with the radial bias funtion (rbf) kernel.  The resulting algorithm resulted in a marginally better result 
+
+
+### 3. Random Forest
+`       Confusion Matrix: RandomForestClasssifer`  
+`       Predicted Legitimate 0	Predicted Fraudulent 1`  
+`Legitimate 0 138352	               33`  
+`Fraudulent 1    208	           337`  
+`Accuracy Score : 0.9982653134672137`  
+`Balanced Accuracy Score: 0.8090550793508205`  
+`                       Classification Report`  
+`              precision    recall  f1-score   support`  
+
+`           0       1.00      1.00      1.00    138385`  
+`           1       0.91      0.62      0.74       545`  
+
+`    accuracy                           1.00    138930`  
+`   macro avg       0.95      0.81      0.87    138930`  
+`weighted avg       1.00      1.00      1.00    138930`  
+
 
 ### 4. XGBoost with postive scaling of lablels
+`        Confusion Matrix: XGBoost Baseline Model`  
+`        Predicted Legitimate 0 	Predicted Fraudulent 1`  
+`Legitimate 0	137580	                 805`  
+`Fraudulent 1	50	                  495`
+`Accuracy Score :         0.9938458216367955`  
+`Balanced Accuracy Score: 0.9512198881394911`  
+`                       Classification Report`  
+`              precision    recall  f1-score   support`  
+
+`           0       1.00      0.99      1.00    138385`  
+`           1       0.38      0.91      0.54       545`  
+
+`    accuracy                           0.99    138930`  
+`   macro avg       0.69      0.95      0.77    138930`  
+`weighted avg       1.00      0.99      1.00    138930`  
+
+The XGBoost model with the ability to pass a scaling factor which helps to compensate for the target class imbalance performs much better than the other algorothims considered.  The XGBoost documentation[2] recommends the scaling_factor
 
 ## Part 6 Tuning XGBoost and selecting the best model.
 
