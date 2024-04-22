@@ -56,21 +56,21 @@ As recommended by Scikit Learn[^1] Balanced Accuracy is a more appropriate objec
 
 ## Part 5 Assessing various machine learning algorithms.
 1. Logistic Regression  
-`     Confusion Matrix: LogisticRegression
-            Predicted Legitimate 0	Predicted Fraudulent 1
-Legitimate 0	138369	                    16
-Fraudulent 1	   524	                    21
-Accuracy Score : 0.9961131505074498
-Balanced Accuracy Score: 0.5192082453121577
-Classification Report
-              precision    recall  f1-score   support
+`     Confusion Matrix: LogisticRegression  
+            Predicted Legitimate 0	Predicted Fraudulent 1  
+Legitimate 0	138369	                    16  
+Fraudulent 1	   524	                    21  
+Accuracy Score : 0.9961131505074498  
+Balanced Accuracy Score: 0.5192082453121577  
+Classification Report  
+              precision    recall  f1-score   support`  
 
-           0       1.00      1.00      1.00    138385
-           1       0.57      0.04      0.07       545
-
-    accuracy                           1.00    138930
-   macro avg       0.78      0.52      0.54    138930
-weighted avg       0.99      1.00      0.99    138930`
+           0       1.00      1.00      1.00    138385  
+           1       0.57      0.04      0.07       545  
+`
+    accuracy                           1.00    138930  
+   macro avg       0.78      0.52      0.54    138930  
+weighted avg       0.99      1.00      0.99    138930 `   
 
 [^1][sklearn.metrics.balanced_accuracy_score](Scikit Learn Balanced Accuracy Score)  
 
