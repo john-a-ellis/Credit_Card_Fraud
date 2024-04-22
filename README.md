@@ -55,7 +55,7 @@ After performing a descriptive analysis of the data a number of features were dr
 As recommended by Scikit Learn[^1] Balanced Accuracy is a more appropriate objective metric over accuracy when working with imbalanced classes in the target, as it weighs each sample according to the inverse prevlaence of its true class.  It is this metric that is used to assess each model's performance.
 
 ## Part 5 Assessing various machine learning algorithms.
-1. Logistic Regression
+1. Logistic Regression  
 `     Confusion Matrix: LogisticRegression
             Predicted Legitimate 0	Predicted Fraudulent 1
 Legitimate 0	138369	                    16
