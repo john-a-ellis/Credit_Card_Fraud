@@ -42,10 +42,10 @@ The dataset consisted of 555718 transaction records of which 2145 were fraudulen
 
 ## Part 3 Feature Engineering and Data Preprocessing
 After performing a descriptive analysis of the data a number of features were dropped or created then encoded/transformed and scaled:   
-1. *Dropped Features*: 'First' Name, 'Last' Name, 'cc_num', 'street', 'city', 'state', 'dob', 'Trans_num', 'Unix_time', 'Lat', 'Long', 'Merch_lat', 'Merch_long'
-2. *Created Features*: 'Region', an amalgamation of U.S. States according to the  U.S. Bureau of Economic Analysis. Age_years, the age of the cardholder based on the difference between today's date and the cardholders DOB. Distance_km, the distance between the cardholders latitude and longitude and the merchants latitude and longitude.
-3. *Encoded Features*: binary or get_dummies encoding - 'catagories', 'gender', 'region'. Target encoding - merchants, jobs.
-4. *Transformed Features*: amt (Transaction Amount) due to the very high dispersion in this feature it was transformed by the natural log.
+1. **Dropped Features**: 'First' Name, 'Last' Name, 'cc_num', 'street', 'city', 'state', 'dob', 'Trans_num', 'Unix_time', 'Lat', 'Long', 'Merch_lat', 'Merch_long'
+2. **Created Features**: 'Region', an amalgamation of U.S. States according to the  U.S. Bureau of Economic Analysis. Age_years, the age of the cardholder based on the difference between today's date and the cardholders DOB. Distance_km, the distance between the cardholders latitude and longitude and the merchants latitude and longitude.
+3. **Encoded Features**: binary or get_dummies encoding - 'catagories', 'gender', 'region'. Target encoding - merchants, jobs.  Target encoding was used for feature preservation without losing the 
+4. **Transformed Features**: amt (Transaction Amount) due to the very high dispersion in this feature it was transformed by the natural log.
 5. The resulting dataset after all preprocessing steps were applied was scaled using the standard_scaler, and split into training and testing sets with 75% of the data used for training and 25% was used for testing.  Due to the very high imbalance in target labels (classes) the training and test splits were reviewed to ensure an adequate number of labels were assigned to each set.  
                 `Average class probability in data set:     0.003860`  
                 `Average class probability in training set: 0.003839`  
@@ -56,21 +56,22 @@ As recommended by Scikit Learn[1] Balanced Accuracy is a more appropriate object
 ___
 ## Part 5 Assessing various machine learning algorithms.
 ### 1. Logistic Regression  
-`            Confusion Matrix: LogisticRegression`  
-`            Predicted Legitimate 0	Predicted Fraudulent`    
-`Legitimate 0	138369	                    16`  
-`Fraudulent 1	   524	                    21`    
-`Accuracy Score : 0.9961131505074498`   
-`Balanced Accuracy Score: 0.5192082453121577`   
-`                   Classification Report`  
-`         precision    recall  f1-score   support`  
+`        Confusion Matrix: LogisticRegression`  
+`         Predicted Legitimate 0	Predicted Fraudulent 1`  
+`Legitimate 0	138366	                19`  
+`Fraudulent 1	520	                    25`  
+`Accuracy Score :         0.9961203483768805`  
+`Balanced Accuracy Score: 0.5228671307577285`  
+                        `Classification Report`  
+`              precision    recall  f1-score   support`  
 
-           0       1.00      1.00      1.00    138385  
-           1       0.57      0.04      0.07       545  
+           0       1.00      1.00      1.00    138385
+           1       0.57      0.05      0.08       545
 
-`    accuracy                           1.00    138930`    
-`   macro avg       0.78      0.52      0.54    138930`  
-`weighted avg       0.99      1.00      0.99    138930`   
+    accuracy                           1.00    138930
+`   macro avg       0.78      0.52      0.54    138930`
+`weighted avg       0.99      1.00      0.99    138930`
+
 
 ### 2. Random Forest
 
