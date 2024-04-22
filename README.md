@@ -56,7 +56,7 @@ As recommended by Scikit Learn[^1] Balanced Accuracy is a more appropriate objec
 
 ## Part 5 Assessing various machine learning algorithms.
 1. Logistic Regression  
-`     Confusion Matrix: LogisticRegression  
+`           Confusion Matrix: LogisticRegression  
             Predicted Legitimate 0	Predicted Fraudulent 1  
 Legitimate 0	138369	                    16  
 Fraudulent 1	   524	                    21    
