@@ -62,7 +62,7 @@ As recommended by Scikit Learn[^1] Balanced Accuracy is a more appropriate objec
 `Fraudulent 1	   524	                    21`    
 `Accuracy Score : 0.9961131505074498`   
 `Balanced Accuracy Score: 0.5192082453121577`   
-`Classification Report`  
+                        `Classification Report`  
 `              precision    recall  f1-score   support`  
 
            0       1.00      1.00      1.00    138385  
