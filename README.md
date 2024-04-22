@@ -59,7 +59,7 @@ As recommended by Scikit Learn[^1] Balanced Accuracy is a more appropriate objec
 `     Confusion Matrix: LogisticRegression  
             Predicted Legitimate 0	Predicted Fraudulent 1  
 Legitimate 0	138369	                    16  
-Fraudulent 1	   524	                    21  
+Fraudulent 1	   524	                    21    
 Accuracy Score : 0.9961131505074498  
 Balanced Accuracy Score: 0.5192082453121577  
 Classification Report  
