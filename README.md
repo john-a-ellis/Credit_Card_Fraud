@@ -112,12 +112,12 @@ The non-linear model chosen was based on a Support Vector Machine with the radia
 `weighted avg       1.00      1.00      1.00    138930`  
 
 
-### 4. XGBoost with postive scaling of lablels
+### 4. XGBoost with postive scaling of labels
 `        Confusion Matrix: XGBoost Baseline Model`  
 `        Predicted Legitimate 0 	Predicted Fraudulent 1`  
 `Legitimate 0	137580	                 805`  
 `Fraudulent 1	50	                  495`
-`Accuracy Score :         0.9938458216367955`  
+`Accuracy Score :         0.9938458216367955`    
 `Balanced Accuracy Score: 0.9512198881394911`  
 `                       Classification Report`  
 `              precision    recall  f1-score   support`  
