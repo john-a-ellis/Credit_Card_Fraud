@@ -47,9 +47,9 @@ After performing a descriptive analysis of the data a number of features were dr
 3. *Encoded Features*: binary or get_dummies encoding - 'catagories', 'gender', 'region'. Target encoding - merchants, jobs.
 4. *Transformed Features*: amt (Transaction Amount) due to the very high dispersion in this feature it was transformed by the natural log.
 5. The resulting dataset after all preprocessing steps were applied was scaled using the standard_scaler, and split into training and testing sets with 75% of the data used for training and 25% was used for testing.  Due to the very high imbalance in target labels (classes) the training and test splits were reviewed to ensure an adequate number of labels were assigned to each set.  
-                `Average class probability in data set:     0.003860`
-                `Average class probability in training set: 0.003839`
-                `Average class probability in test set:     0.003923`
+                `Average class probability in data set:     0.003860`  
+                `Average class probability in training set: 0.003839`  
+                `Average class probability in test set:     0.003923`  
 
 ## Part 4 Selection of the objective metrics for model assessment
 As recommended by Scikit Learn[^1] Balanced Accuracy is a more appropriate objective metric over accuracy when working with imbalanced classes in the target, as it weighs each sample according to the inverse prevlaence of its true class.  It is this metric that is used to assess each model's performance.
