@@ -1,5 +1,5 @@
 # Credit_Card_Fraud  
-Credit Card Fraud Detection Project 4 Team 6  
+Credit Card Fraud Detection Project 4 Team 6  (Nesihlan Atar, John Ellis, Gurans Limbu, Daniel Morris)
 Dataset located at: https://drive.google.com/drive/folders/18y-7oFjkxsOnaDOWkhwiNVZtF26WwLJ-?usp=drive_link  
 ## An Overview of the project and its purpose:  
 To create a binary classification machine learning model to identify fraudulent transactions within a population of 555718 transactions.  The labelled dataset consisted of the following 22 features:  
