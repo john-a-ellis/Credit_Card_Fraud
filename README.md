@@ -52,10 +52,10 @@ After performing a descriptive analysis of the data a number of features were dr
                 `Average class probability in test set:     0.003923`  
 
 ## Part 4 Selection of the objective metrics for model assessment
-As recommended by Scikit Learn[^1] Balanced Accuracy is a more appropriate objective metric over accuracy when working with imbalanced classes in the target, as it weighs each sample according to the inverse prevlaence of its true class.  It is this metric that is used to assess each model's performance.
-
+As recommended by Scikit Learn[1] Balanced Accuracy is a more appropriate objective metric over accuracy when working with imbalanced classes in the target, as it weighs each sample according to the inverse prevlaence of its true class.  It is this metric that is used to assess each model's performance.
+___
 ## Part 5 Assessing various machine learning algorithms.
-1. Logistic Regression  
+### 1. Logistic Regression  
 `            Confusion Matrix: LogisticRegression`  
 `            Predicted Legitimate 0	Predicted Fraudulent`    
 `Legitimate 0	138369	                    16`  
@@ -72,7 +72,16 @@ As recommended by Scikit Learn[^1] Balanced Accuracy is a more appropriate objec
 `   macro avg       0.78      0.52      0.54    138930`  
 `weighted avg       0.99      1.00      0.99    138930`   
 
-[^1][sklearn.metrics.balanced_accuracy_score](Scikit Learn Balanced Accuracy Score)  
+### 2. Random Forest
+
+### 3. Support Vector Machine with RBF kernel 
+
+### 4. XGBoost with postive scaling of lablels
+
+## Part 6 Tuning XGBoost and selecting the best model.
+
+
+[1][sklearn.metrics.balanced_accuracy_score](Scikit Learn Balanced Accuracy Score)  
 
 
 
