@@ -54,6 +54,8 @@ After performing a descriptive analysis of the data a number of features were dr
                 `Average class probability in data set:     0.003860`  
                 `Average class probability in training set: 0.003839`  
                 `Average class probability in test set:     0.003923`  
+![Distribution of Postive y](img/Distribution_of_y_pos.png)
+![Distribution of Negative y](img/Distribution_of_y_neg.png)
 
 ## Part 4 Selection of the objective metrics for model assessment
 As recommended by Scikit Learn[1] Balanced Accuracy is a more appropriate objective metric over accuracy when working with imbalanced classes in the target, as it weighs each sample according to the inverse prevlaence of its true class.  It is this metric that is used to assess each model's performance.
