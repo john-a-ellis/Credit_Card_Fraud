@@ -38,13 +38,14 @@ The project was broken into 6 parts.
 ## Part 1 Descriptive Analysis  
 
 ## Part 2 Target Variable Review
-The dataset consisted of 555718 transaction records of which 2145 were fraudulent (0.3860%).  The labels therefore are highly imbalanced and steps were taken to address the impact of this imbalance on the models.
+The dataset consisted of 555718 transaction records of which 2145 were fraudulent (0.3860%).  The labels therefore are highly imbalanced and steps were taken to address the impact of this imbalance on the models.  
+![Target Variable Distribution]([img\Target_Variable_distribution.png)
 
 ## Part 3 Feature Engineering and Data Preprocessing
 After performing a descriptive analysis of the data a number of features were dropped or created then encoded/transformed and scaled:   
 1. **Dropped Features**: 'First' Name, 'Last' Name, 'cc_num', 'street', 'city', 'state', 'dob', 'Trans_num', 'Unix_time', 'Lat', 'Long', 'Merch_lat', 'Merch_long'
 2. **Created Features**: 'Region', an amalgamation of U.S. States according to the  U.S. Bureau of Economic Analysis. Age_years, the age of the cardholder based on the difference between today's date and the cardholders DOB. Distance_km, the distance between the cardholders latitude and longitude and the merchants latitude and longitude.
-3. **Encoded Features**: binary or get_dummies encoding - 'catagories', 'gender', 'region'. Target encoding - merchants, jobs.  Target encoding was used for feature preservation without losing the 
+3. **Encoded Features**: binary or get_dummies encoding - 'catagories', 'gender', 'region'. Target encoding - merchants, jobs.  Target encoding was used for feature preservation in categorical features with extensive catagories.
 4. **Transformed Features**: amt (Transaction Amount) due to the very high dispersion in this feature it was transformed by the natural log.
 5. The resulting dataset after all preprocessing steps were applied was scaled using the standard_scaler, and split into training and testing sets with 75% of the data used for training and 25% was used for testing.  Due to the very high imbalance in target labels (classes) the training and test splits were reviewed to ensure an adequate number of labels were assigned to each set.  
                 `Average class probability in data set:     0.003860`  
@@ -93,7 +94,7 @@ The logistic regression model as illustrated above has a mediocre performance wh
 `   macro avg       0.93      0.62      0.69    138930`  
 `weighted avg       1.00      1.00      1.00    138930`  
 
-The non-linear model chosen was based on a Support Vector Machine with the radial bias funtion (rbf) kernel.  The resulting algorithm resulted in a marginally better (0.10) improvement in the balanced accuracy score and a 5x improvement in recall over the Logistic Regression Model above.  Although performing better there was definitely room to improve both the recall and balanced accuracy scores.
+The non-linear model chosen was based on a Support Vector Machine with the radial bias funtion (rbf) kernel.  The resulting algorithm resulted in a marginally better (0.10) improvement in the balanced accuracy score and a 5x improvement in recall over the Logistic Regression Model above.  Although performing better there was definitely room to improve both the recall at 0.39 and balanced accuracy scores at 0.62.
 
 ### 3. Random Forest Classifier
 `       Confusion Matrix: RandomForestClasssifer`  
@@ -112,7 +113,7 @@ The non-linear model chosen was based on a Support Vector Machine with the radia
 `   macro avg       0.95      0.81      0.87    138930`  
 `weighted avg       1.00      1.00      1.00    138930`  
 
-Next we reviewed an ensemble random forest model which was much more performant than the previous two models. With this model we started to see a more acceptable balanced accuracy score (.81) but the model was able to predict fraudulent transacitons 62% of the time.
+Next we reviewed an ensemble random forest model which was much more performant than the previous two models. With this model we started to see a more acceptable balanced accuracy score (0.81) but the model was able to predict fraudulent transacitons 62% of the time.
 
 ### 4. XGBoost with postive scaling of labels
 `        Confusion Matrix: XGBoost Baseline Model`  
@@ -131,9 +132,32 @@ Next we reviewed an ensemble random forest model which was much more performant 
 `   macro avg       0.69      0.95      0.77    138930`  
 `weighted avg       1.00      0.99      1.00    138930`  
 
-Given the high target imbalance the XGBoost model with it's ability to accept a parameter which helps to compensate for the target class imbalance, performs much better than the other algorothims considered.  The parameter scale_pos_weights is set to the ratio of negative transactions to positive transactions. (sum(postive_y)/sum(negative_y)) which when applied removes the imbalance in the target classes.
+Given the high target imbalance the XGBoost model with it's ability to accept a parameter which helps to compensate for the class imbalance, performs much better than the other algorothims considered.  The parameter 'scale_pos_weights' is set to the ratio of negative transactions to positive transactions. (sum(postive_y)/sum(negative_y)) or 259.0 which when applied removes the imbalance in the target classes.
 
 ## Part 6 Tuning XGBoost and selecting the best model.
+After reviewing the model results XGBoost was selected for hyper-parameter tuning because:
+1. XGBoost has facilities to address imbalance in the target class.
+2. XGBoost has a robust parameter framework to support tuning.
+3. XGBosst showed the most promising results from the models reviewed.
+
+The tuning objective was set to maximize the balance accuracy score and secondarily model precision.  Precision was chosen in an attempt to minimize the rate of false positives. 
+
+`          Confusion Matrix: XGBoost Grid Search Model` 
+`          Predicted Legitimate 0	Predicted Fraudulent 1`  
+`Legitimate 0	135526	                2859`    
+`Fraudulent 1	10	                  535`  
+`Accuracy Score : 0.9793493126034694`  
+`Balanced Accuracy Score: 0.9804958112803894` 
+`                       Classification Report`  
+`              precision    recall  f1-score   support`  
+
+`           0       1.00      0.98      0.99    138385`  
+`           1       0.16      0.98      0.27       545`  
+
+`    accuracy                           0.98    138930`  
+`   macro avg       0.58      0.98      0.63    138930`  
+`weighted avg       1.00      0.98      0.99    138930`  
+
 
 
 [1][sklearn.metrics.balanced_accuracy_score](Scikit Learn Balanced Accuracy Score)  
