@@ -1,5 +1,5 @@
 # Credit_Card_Fraud  
-Credit Card Fraud Detection Project 4 Team 6  (Nesihlan Atar, John Ellis, Gurans Limbu, Daniel Morris)
+Credit Card Fraud Detection Project 4 Team 6  (Nesihlan Atar, John Ellis, Gurans Limbu, Daniel Morris)  
 Dataset located at: https://drive.google.com/drive/folders/18y-7oFjkxsOnaDOWkhwiNVZtF26WwLJ-?usp=drive_link  
 ## An Overview of the project and its purpose:  
 To create a binary classification machine learning model to identify fraudulent transactions within a population of 555718 transactions.  The labelled dataset consisted of the following 22 features:  
@@ -27,7 +27,7 @@ To create a binary classification machine learning model to identify fraudulent 
 21. Merch_long: Merchant's location (longitude).
 22. Is_fraud:Fraudulent transaction indicator (1 = fraud, 0 = legitimate). This is the target variable for classification purposes.
 
-The project was broken into 5 parts.
+The project was broken into 6 parts.
 1.  Descriptive analysis:  a review of the features and how they relate to the target variable.
 2.  Target variable review  
 3.  Feature Engineering and Data Preprocessing   
@@ -55,6 +55,8 @@ After performing a descriptive analysis of the data a number of features were dr
 As recommended by Scikit Learn[1] Balanced Accuracy is a more appropriate objective metric over accuracy when working with imbalanced classes in the target, as it weighs each sample according to the inverse prevlaence of its true class.  It is this metric that is used to assess each model's performance.
 ___
 ## Part 5 Assessing various machine learning algorithms.
+The following models were reviewed for their ability to achieve a balanced accuracy score while maximizing the recall of the model.
+
 ### 1. Logistic Regression  
 `         Confusion Matrix: LogisticRegression`  
 `         Predicted Legitimate 0	Predicted Fraudulent 1`  
@@ -75,8 +77,8 @@ ___
 The logistic regression model as illustrated above has a mediocre performance when attempting to predict the fraudulent records in the test set as evidenced by the recall of 0.05 where approximately 1 in every 20 fraudulent transactions were detected.  This low performance is further illustrated by the 0.52 balanced accuracy score achieved.  Based on this result we moved onto a non-linear model.
 
 ### 2. Support Vector Machine with RBF kernel
-`       Confusion Matrix: SVM with kernal rbf`
-`       Predicted Legitimate 0	Predicted Fraudulent 1`
+`       Confusion Matrix: SVM with kernal rbf`  
+`       Predicted Legitimate 0	Predicted Fraudulent 1`  
 `Legitimate 0 138364	               21`  
 `Fraudulent 1 410	               135`  
 `Accuracy Score :          0.9968977182753905`  
@@ -91,10 +93,9 @@ The logistic regression model as illustrated above has a mediocre performance wh
 `   macro avg       0.93      0.62      0.69    138930`  
 `weighted avg       1.00      1.00      1.00    138930`  
 
-The non-linear model chosen was based on a Support Vector Machine with the radial bias funtion (rbf) kernel.  The resulting algorithm resulted in a marginally better result 
+The non-linear model chosen was based on a Support Vector Machine with the radial bias funtion (rbf) kernel.  The resulting algorithm resulted in a marginally better (0.10) improvement in the balanced accuracy score and a 5x improvement in recall over the Logistic Regression Model above.  Although performing better there was definitely room to improve both the recall and balanced accuracy scores.
 
-
-### 3. Random Forest
+### 3. Random Forest Classifier
 `       Confusion Matrix: RandomForestClasssifer`  
 `       Predicted Legitimate 0	Predicted Fraudulent 1`  
 `Legitimate 0 138352	               33`  
@@ -111,6 +112,7 @@ The non-linear model chosen was based on a Support Vector Machine with the radia
 `   macro avg       0.95      0.81      0.87    138930`  
 `weighted avg       1.00      1.00      1.00    138930`  
 
+Next we reviewed an ensemble random forest model which was much more performant than the previous two models. With this model we started to see a more acceptable balanced accuracy score (.81) but the model was able to predict fraudulent transacitons 62% of the time.
 
 ### 4. XGBoost with postive scaling of labels
 `        Confusion Matrix: XGBoost Baseline Model`  
@@ -129,7 +131,7 @@ The non-linear model chosen was based on a Support Vector Machine with the radia
 `   macro avg       0.69      0.95      0.77    138930`  
 `weighted avg       1.00      0.99      1.00    138930`  
 
-The XGBoost model with the ability to pass a scaling factor which helps to compensate for the target class imbalance performs much better than the other algorothims considered.  The XGBoost documentation[2] recommends the scaling_factor
+Given the high target imbalance the XGBoost model with it's ability to accept a parameter which helps to compensate for the target class imbalance, performs much better than the other algorothims considered.  The parameter scale_pos_weights is set to the ratio of negative transactions to positive transactions. (sum(postive_y)/sum(negative_y)) which when applied removes the imbalance in the target classes.
 
 ## Part 6 Tuning XGBoost and selecting the best model.
 
