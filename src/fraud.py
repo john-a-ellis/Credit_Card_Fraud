@@ -1,3 +1,10 @@
+#importing Dependencies
+import pandas as pd
+from sklearn.metrics import confusion_matrix, classification_report, accuracy_score, f1_score, roc_auc_score, roc_curve, balanced_accuracy_score
+from sklearn.metrics.pairwise import haversine_distances
+from math import radians
+
+
 ## function to genearte Confusion Matrix and Classification Report
 def gen_cm_cr(modelName, y_test, y_pred):
     cm = confusion_matrix(y_test, y_pred)
@@ -17,8 +24,7 @@ def gen_cm_cr(modelName, y_test, y_pred):
 
 ## function to find the distance in kilometers between two geo-spatial co-ordinates.  Based on excample from Scikit Learn documentation
 def get_distance(from_lat, from_lng, to_lat, to_lng):
-    from sklearn.metrics.pairwise import haversine_distances
-    from math import radians
+
     start =[]
     end =[]
     start.append(from_lat)
@@ -187,7 +193,7 @@ def refit_strategy(cv_results):
     ]
     print(
         "Out of the previously selected high balanced accuracy models, we keep all\n"
-        "the models within one standard deviation of the highest recall model:"
+        "the models within one standard deviation of the highest precision model:"
     )
     print_dataframe(high_precision_cv_results)
 
@@ -198,7 +204,7 @@ def refit_strategy(cv_results):
 
     print(
         "\nThe selected final model is the fastest to predict out of the previously\n"
-        "selected subset of best models based on precision and recall.\n"
+        "selected subset of best models based on balanced acurracy and precision.\n"
         "Its scoring time is:\n\n"
         f"{high_precision_cv_results.loc[fastest_top_precision_high_balanced_accuracy_index]}"
     )
