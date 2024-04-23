@@ -39,7 +39,7 @@ The project was broken into 6 parts.
 
 ## Part 2 Target Variable Review
 The dataset consisted of 555718 transaction records of which 2145 were fraudulent (0.3860%).  The labels therefore are highly imbalanced and steps were taken to address the impact of this imbalance on the models.  
-![Target Variable Distribution]([img\Target_Variable_distribution.png)
+![Target Variable Distribution]([img/Target_Variable_distribution.png)
 
 ## Part 3 Feature Engineering and Data Preprocessing
 After performing a descriptive analysis of the data a number of features were dropped or created then encoded/transformed and scaled:   
