@@ -118,6 +118,8 @@ The non-linear model chosen was based on a Support Vector Machine with the radia
 `   macro avg       0.95      0.81      0.87    138930`  
 `weighted avg       1.00      1.00      1.00    138930`  
 
+The random forest classifier generated the following feature importances:  
+![Random Forest Feature Importance](img/RandomForestImportance.png)  
 Next we reviewed an ensemble random forest model which was much more performant than the previous two models. With this model we started to see a more acceptable balanced accuracy score (0.81) but the model was able to predict fraudulent transacitons 62% of the time.
 
 ### 4. XGBoost with postive scaling of labels
@@ -138,6 +140,8 @@ Next we reviewed an ensemble random forest model which was much more performant 
 `weighted avg       1.00      0.99      1.00    138930`  
 
 Given the high target imbalance the XGBoost model with it's ability to accept a parameter which helps to compensate for the class imbalance, performs much better than the other algorothims considered.  The parameter 'scale_pos_weights' is set to the ratio of negative transactions to positive transactions. (sum(postive_y)/sum(negative_y)) or 259.0 which when applied removes the imbalance in the target classes.
+![XGBoost Classifier Base Model Feature Importance](img/XGB_base_importances.png)
+
 
 ## Part 6 Tuning XGBoost and selecting the best model.
 After reviewing the model results XGBoost was selected for hyper-parameter tuning because:
@@ -145,9 +149,19 @@ After reviewing the model results XGBoost was selected for hyper-parameter tunin
 2. XGBoost has a robust parameter framework to support tuning.
 3. XGBosst showed the most promising results from the models reviewed.
 
+The parameters selected to be tuned were:  
+1. The number of boosting rounds to run (32,64,128,256,512) 
+2. The maximum depth of the trees created (2, 4, 6, 8, 10, 12)  
+3. This results in 30 distinct models being evaluated.
+
+The results ewre as follows:
+1. From the 30 models run by the tuner, 6 (20%) of the models met the primary requirement of meeting 0.965 balanced accuracy.
+2. From the 6 models 3 (50%) met the requirement of being within 1 standard deviation of the model with the highest balanced accuracy.
+3. Of these 3 models the one with which rendered the fastest prediction was selected as the **BEST** model.  
+
 The tuning objective was set to maximize the balance accuracy score and secondarily model precision.  Precision was chosen in an attempt to minimize the rate of false positives. 
 
-`          Confusion Matrix: XGBoost Grid Search Model`   
+`          Confusion Matrix: XGBoost Grid Search Best Model`   
 `          Predicted Legitimate 0	Predicted Fraudulent 1`  
 `Legitimate 0	135526	                2859`    
 `Fraudulent 1	10	                  535`  
@@ -162,10 +176,11 @@ The tuning objective was set to maximize the balance accuracy score and secondar
 `    accuracy                           0.98    138930`  
 `   macro avg       0.58      0.98      0.63    138930`  
 `weighted avg       1.00      0.98      0.99    138930`  
+![XGBoost Classifer BEST Model Feature Importance](img/XGB_best_importances.png)
 
 
+[1][Scikit Learn Balanced Accuracy Score](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.balanced_accuracy_score.html#sklearn.metrics.balanced_accuracy_score) 
 
-[1][sklearn.metrics.balanced_accuracy_score](Scikit Learn Balanced Accuracy Score)  
-
+The following 
 
 
