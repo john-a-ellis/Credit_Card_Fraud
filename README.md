@@ -47,7 +47,10 @@ After performing a descriptive analysis of the data a number of features were dr
 2. **Created Features**: 'Region', an amalgamation of U.S. States according to the  U.S. Bureau of Economic Analysis. Age_years, the age of the cardholder based on the difference between today's date and the cardholders DOB. Distance_km, the distance between the cardholders latitude and longitude and the merchants latitude and longitude.
 3. **Encoded Features**: binary or get_dummies encoding - 'catagories', 'gender', 'region'. Target encoding - merchants, jobs.  Target encoding was used for feature preservation in categorical features with extensive catagories.
 4. **Transformed Features**: amt (Transaction Amount) due to the very high dispersion in this feature it was transformed by the natural log.
-5. The resulting dataset after all preprocessing steps were applied was scaled using the standard_scaler, and split into training and testing sets with 75% of the data used for training and 25% was used for testing.  Due to the very high imbalance in target labels (classes) the training and test splits were reviewed to ensure an adequate number of labels were assigned to each set.  
+![original amt distribution](img/amount.png)
+![amt transformed to a log distribution](img/amount_log.png)
+
+6. The resulting dataset after all preprocessing steps were applied was scaled using the standard_scaler, and split into training and testing sets with 75% of the data used for training and 25% was used for testing.  Due to the very high imbalance in target labels (classes) the training and test splits were reviewed to ensure an adequate number of labels were assigned to each set.  
                 `Average class probability in data set:     0.003860`  
                 `Average class probability in training set: 0.003839`  
                 `Average class probability in test set:     0.003923`  
@@ -142,12 +145,12 @@ After reviewing the model results XGBoost was selected for hyper-parameter tunin
 
 The tuning objective was set to maximize the balance accuracy score and secondarily model precision.  Precision was chosen in an attempt to minimize the rate of false positives. 
 
-`          Confusion Matrix: XGBoost Grid Search Model` 
+`          Confusion Matrix: XGBoost Grid Search Model`   
 `          Predicted Legitimate 0	Predicted Fraudulent 1`  
 `Legitimate 0	135526	                2859`    
 `Fraudulent 1	10	                  535`  
 `Accuracy Score : 0.9793493126034694`  
-`Balanced Accuracy Score: 0.9804958112803894` 
+`Balanced Accuracy Score: 0.9804958112803894`   
 `                       Classification Report`  
 `              precision    recall  f1-score   support`  
 
