@@ -1,6 +1,8 @@
 # Credit_Card_Fraud  
 Credit Card Fraud Detection Project 4 Team 6  (Nesihlan Atar, John Ellis, Gurans Limbu, Daniel Morris)  
-Dataset located at: https://drive.google.com/drive/folders/18y-7oFjkxsOnaDOWkhwiNVZtF26WwLJ-?usp=drive_link  
+Dataset located on: 
+[Kaggle](https://www.kaggle.com/datasets/kelvinkelue/credit-card-fraud-prediction)
+
 ## An Overview of the project and its purpose:  
 To create a binary classification machine learning model to identify fraudulent transactions within a population of 555718 transactions.  The labelled dataset consisted of the following 22 features:  
 
@@ -34,13 +36,13 @@ The project was broken into 6 parts.
 4.  Selection of the objective metric(s) for model assessment.
 5.  Assessing various types of machine learning algorithims with minimal tuning.
 6.  Selecting "best" algorithim from the set of algroithims assessed for hyperparamater tuning.
-
+___
 ## Part 1 Descriptive Analysis  
-
+___
 ## Part 2 Target Variable Review
 The dataset consisted of 555718 transaction records of which 2145 were fraudulent (0.3860%).  The labels therefore are highly imbalanced and steps were taken to address the impact of this imbalance on the models.  
 ![Target Variable Distribution](img/Target_Variable_distribution.png)
-
+___
 ## Part 3 Feature Engineering and Data Preprocessing
 After performing a descriptive analysis of the data a number of features were dropped or created then encoded/transformed and scaled:   
 1. **Dropped Features**: 'First' Name, 'Last' Name, 'cc_num', 'street', 'city', 'state', 'dob', 'Trans_num', 'Unix_time', 'Lat', 'Long', 'Merch_lat', 'Merch_long'
@@ -56,7 +58,7 @@ After performing a descriptive analysis of the data a number of features were dr
                 `Average class probability in test set:     0.003923`  
 ![Distribution of Postive y](img/Distribution_of_y_pos.png)
 ![Distribution of Negative y](img/Distribution_of_y_neg.png)
-
+___
 ## Part 4 Selection of the objective metrics for model assessment
 As recommended by Scikit Learn[1] Balanced Accuracy is a more appropriate objective metric over accuracy when working with imbalanced classes in the target, as it weighs each sample according to the inverse prevlaence of its true class.  It is this metric that is used to assess each model's performance.
 ___
@@ -142,7 +144,7 @@ Next we reviewed an ensemble random forest model which was much more performant 
 Given the high target imbalance the XGBoost model with it's ability to accept a parameter which helps to compensate for the class imbalance, performs much better than the other algorothims considered.  The parameter 'scale_pos_weights' is set to the ratio of negative transactions to positive transactions. (sum(postive_y)/sum(negative_y)) or 259.0 which when applied removes the imbalance in the target classes.
 ![XGBoost Classifier Base Model Feature Importance](img/XGB_base_importances.png)
 
-
+___
 ## Part 6 Tuning XGBoost and selecting the best model.
 After reviewing the model results XGBoost was selected for hyper-parameter tuning because:
 1. XGBoost has facilities to address imbalance in the target class.
@@ -185,6 +187,6 @@ The following data science and visualization technologies were used in creating 
 
 ![https://scikit-learn.org/stable/index.html](https://scikit-learn.org/stable/_images/scikit-learn-logo-notext.png)  
 ![https://xgboost.readthedocs.io/en/stable/#](https://raw.githubusercontent.com/dmlc/dmlc.github.io/master/img/logo-m/xgboost.png)  
-![https://pandas.pydata.org/](https://pandas.pydata.org/static/img/pandas.svg)  
+![https://pandas.pydata.org/](https://pandas.pydata.org/static/img/pandas_secondary.svg)  
 ![https://plotly.com/python/plotly-express/#overview](https://plotly.com/all_static/images/graphing_library_dark.svg)  
 ![https://matplotlib.org/stable/](https://matplotlib.org/stable/_static/logo_light.svg)  
