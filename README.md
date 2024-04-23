@@ -179,8 +179,12 @@ The tuning objective was set to maximize the balance accuracy score and secondar
 ![XGBoost Classifer BEST Model Feature Importance](img/XGB_best_importances.png)
 
 
-[1][Scikit Learn Balanced Accuracy Score](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.balanced_accuracy_score.html#sklearn.metrics.balanced_accuracy_score) 
+[Scikit Learn Balanced Accuracy Score](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.balanced_accuracy_score.html#sklearn.metrics.balanced_accuracy_score) 
 
-The following 
+The following data science and visualization technologies were used in creating this analysis:
 
-
+![https://scikit-learn.org/stable/index.html](https://scikit-learn.org/stable/_images/scikit-learn-logo-notext.png)  
+![https://xgboost.readthedocs.io/en/stable/#](https://raw.githubusercontent.com/dmlc/dmlc.github.io/master/img/logo-m/xgboost.png)  
+![https://pandas.pydata.org/](https://pandas.pydata.org/static/img/pandas.svg)  
+![https://plotly.com/python/plotly-express/#overview](https://plotly.com/all_static/images/graphing_library_dark.svg)  
+![https://matplotlib.org/stable/](https://matplotlib.org/stable/_static/logo_light.svg)  
