@@ -188,7 +188,7 @@ The tuning objective was set to maximize the balance accuracy score and secondar
 
 ![XGBoost Classifer BEST Model Feature Importance](img/XGB_best_importances.png)
 
-![Comparative Feature Importance by Model](img/Comparative_importance.png)
+![Comparative Feature Importance by Model](img/Comparative_Importance.png)
 ___
 # Footnotes:
 [1]
