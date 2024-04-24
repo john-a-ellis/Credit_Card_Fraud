@@ -103,7 +103,7 @@ The following models were reviewed for their ability to achieve a balanced accur
 ### 1. Logistic Regression  
 `         Confusion Matrix: LogisticRegression`  
 `         Predicted Legitimate 0	Predicted Fraudulent 1`  
-`Legitimate 0	138366	                   19`  
+`Legitimate 0	138366	                    19`  
 `Fraudulent 1	520	                    25`  
 `Accuracy Score :         0.9961`  
 `Balanced Accuracy Score: 0.5229`  
@@ -122,7 +122,7 @@ The logistic regression model as illustrated above has a mediocre performance wh
 ### 2. K-Nearest Neighbors  
 `        Confusion Matrix: KNNModelclassifier`  
 `        Predicted Legitimate 0	Predicted Fraudulent 1`  
-`Legitimate 0  138377	                8`  
+`Legitimate 0  138377	                 8`  
 `Fraudulent 1     542	                  3`  
 `Accuracy Score :         0.9960`  
 `Balanced Accuracy Score: 0.5027`  
@@ -142,7 +142,7 @@ In our evaluation of the KNN model for predicting fraudulent transactions, we ac
 `       Confusion Matrix: RandomForestClasssifer`  
 `       Predicted Legitimate 0	Predicted Fraudulent 1`  
 `Legitimate 0 138352	               33`  
-`Fraudulent 1    208	           337`  
+`Fraudulent 1    208	             337`  
 `Accuracy Score :         0.9983`  
 `Balanced Accuracy Score: 0.8091`  
 `                       Classification Report`  
@@ -163,7 +163,7 @@ Next we reviewed an ensemble random forest model which was much more performant 
 `        Confusion Matrix: XGBoost Baseline Model`  
 `        Predicted Legitimate 0 	Predicted Fraudulent 1`  
 `Legitimate 0	137580	                 805`  
-`Fraudulent 1	50	                 495`  
+`Fraudulent 1	    50	             495`  
 `Accuracy Score :         0.9938`    
 `Balanced Accuracy Score: 0.9512`  
 `                       Classification Report`  
@@ -202,7 +202,7 @@ The tuning objective was set to maximize the balance accuracy score and secondar
 `          Confusion Matrix: XGBoost Grid Search Best Model`   
 `          Predicted Legitimate 0	Predicted Fraudulent 1`  
 `Legitimate 0	135526	                2859`    
-`Fraudulent 1	10	                 535`  
+`Fraudulent 1	    10	             535`  
 `Accuracy Score:          0.9793`  
 `Balanced Accuracy Score: 0.9805`   
 `                       Classification Report`  
