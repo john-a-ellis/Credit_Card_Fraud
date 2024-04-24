@@ -64,7 +64,7 @@ After performing a descriptive analysis of the data a number of features were dr
 7. **Scaling**: Sci-kit Learns standard scaler was fit to the training features and both the training and testing features were transformed with the resulting scaler.   
 ___
 ## Part 4 Selection of the objective metrics for model assessment
-As recommended by Scikit Learn[1] Balanced Accuracy is a more appropriate objective metric over accuracy when working with imbalanced classes in the target, as it weighs each sample according to the inverse prevlaence of its true class.  It is this metric that is used to assess each model's performance.
+As recommended by Scikit Learn[1](Footnotes:) Balanced Accuracy is a more appropriate objective metric over accuracy when working with imbalanced classes in the target, as it weighs each sample according to the inverse prevlaence of its true class.  It is this metric that is used to assess each model's performance.
 ___
 ## Part 5 Assessing various machine learning algorithms.
 The following models were reviewed for their ability to achieve a balanced accuracy score while maximizing the recall of the model.
@@ -146,7 +146,7 @@ Next we reviewed an ensemble random forest model which was much more performant 
 `weighted avg       1.00      0.99      1.00    138930`  
 
 
-Given the high target imbalance the XGBoost model with it's ability to accept a parameter which helps to compensate for the class imbalance, performs much better than the other algorothims considered.  The parameter [2]'scale_pos_weights' is set to the ratio of negative transactions to positive transactions. (sum(postive_y)/sum(negative_y)) or 259.0 which when applied removes the imbalance in the target classes.
+Given the high target imbalance the XGBoost model with it's ability to accept a parameter which helps to compensate for the class imbalance, performs much better than the other algorothims considered.  The parameter [2](Footnotes:)'scale_pos_weights' is set to the ratio of negative transactions to positive transactions. (sum(negative_y)/sum(positive_y)) or 259.0 which when applied removes the imbalance in the target classes.
 
 ![XGBoost Classifier Base Model Feature Importance](img/XGB_base_importances.png)
 ## Part 6 Algorithm Selection
@@ -186,11 +186,12 @@ The tuning objective was set to maximize the balance accuracy score and secondar
 
 ![XGBoost Classifer BEST Model Feature Importance](img/XGB_best_importances.png)
 ___
-Footnotes:
-[1]
+# Footnotes:
 [Scikit Learn Balanced Accuracy Score](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.balanced_accuracy_score.html#sklearn.metrics.balanced_accuracy_score) 
 [2]
-[
+[XGBoost Control of positive and negative weights](https://xgboost.readthedocs.io/en/stable/parameter.html)
+
+
 The following data science and visualization technologies were used in creating this analysis:
 
 ![https://scikit-learn.org/stable/index.html](https://scikit-learn.org/stable/_images/scikit-learn-logo-notext.png)  
