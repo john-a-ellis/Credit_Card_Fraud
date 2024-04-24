@@ -1,3 +1,10 @@
+
+
+
+
+
+************************************************************************************************
+
 # Credit Card Fraud Detection
 Credit Card Fraud Detection Project 4 Team 6  (Nesihlan Atar, John Ellis, Gurans Limbu, Daniel Morris)  
 Dataset located on: 
