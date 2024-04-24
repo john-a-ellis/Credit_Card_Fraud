@@ -92,7 +92,8 @@ The following models were reviewed for their ability to achieve a balanced accur
 The logistic regression model as illustrated above has a mediocre performance when attempting to predict the fraudulent records in the test set as evidenced by the recall of 0.05 where approximately 1 in every 20 fraudulent transactions were detected.  This low performance is further illustrated by the 0.52 balanced accuracy score achieved.  Based on this result we moved onto a non-linear model.
 
 ### 2. K-Nearest Neighbors  
-`         Confusion Matrix: KNNModelclassifier``         
+`         Confusion Matrix: KNNModelclassifier`
+`         
 Predicted Legitimate 0	Predicted Fraudulent `  1`
 Legitimate 0	13837                    7`  	`8
 Fraudulent 1	5                    4`  2`	3
