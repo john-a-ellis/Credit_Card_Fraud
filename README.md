@@ -60,9 +60,19 @@ The 'Top 20 Merchants by Transaction Volume' chart highlights merchants with hig
 which could be due to several factors such as widespread locations, diverse offerings,
 or competitive pricing strategies that attract more customers.  
 
+How do transaction amounts vary across different merchants
+
+The box plot below shows top 10 Merchants with the highest average transaction amount. I excluded the outliers for better visualization. All of the medians for these merchants are very similar, all the medians are around $6-$7 dollars. The middle 50% of transactions are all similiar as well ranging roughly around $4-$9. All of the bottom lines start at about $1 suggesting lowest priced good at all these places is $1. THe top 25% of all transactions are can vary a lot by merchant. The top lines show that maximum price is at $9-$17. None of the top 20 from above bargraph are in the top 10 in below boxplot, suggesting that most popular merchants are not the most expensive. For example nofrills would have more transactions than Guess but nofrills transaction coulbe be smaller in amount compared to Guess.
+![Transactions by Merchant](img/Transaction_by_Merchant.png)
+
 ![Monthly Transaction Volume](img/monthly.png)  
 The 'Monthly Transaction Volume' chart reinforces the idea of increased end-of-year spending with a
 dramatic spike in December, likely due to holiday shopping.
+
+![Fraudulent Transaction by Region](img/Fraudulent_Transaction_by_Region.png)
+There appears to be signifciant variance in transactions by region.
+
+![Population vs Number of Transactions per City](img/Population_vs_Number_of_Transactions_City.png)
 
 ![Transaction value over time](img/Transaction_Value.png)
 The 'Transaction Volume Over Time' chart exhibits a clear cyclical pattern, indicating weekly fluctuations
