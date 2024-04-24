@@ -55,11 +55,19 @@ showing that while some merchants may have a high number of fraudulent transacti
 it represents a smaller fraction of their total transaction volume. Conversely, other merchants have a higher
 percentage of their transactions flagged as fraudulent, which could be concerning despite a lower overall number
 of transactions.
+![Top 20 Merchants](img/top_20_merchants.png)
+The 'Top 20 Merchants by Transaction Volume' chart highlights merchants with high transaction volumes,
+which could be due to several factors such as widespread locations, diverse offerings,
+or competitive pricing strategies that attract more customers.  
 
-![Monthly Transaction Volume](img/monthly.png)  
 ![Monthly Transaction Volume](img/monthly.png)  
 The 'Monthly Transaction Volume' chart reinforces the idea of increased end-of-year spending with a
 dramatic spike in December, likely due to holiday shopping.
+
+![Transaction value over time](img/Transaction_Value.png)
+The 'Transaction Volume Over Time' chart exhibits a clear cyclical pattern, indicating weekly fluctuations
+in transaction volume. Peaks might correspond with weekends or paydays when consumers are more likely to spend.
+The rising trend towards the year's end suggests increased spending during the holiday season.
 ___
 ## Part 2 Target Variable Review
 The dataset consisted of 555718 transaction records of which 2145 were fraudulent (0.3860%).  The labels therefore are highly imbalanced and steps were taken to address the impact of this imbalance on the models.  
