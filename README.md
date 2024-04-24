@@ -1,4 +1,4 @@
-# Credit_Card_Fraud  
+# Credit Card Fraud Detection
 Credit Card Fraud Detection Project 4 Team 6  (Nesihlan Atar, John Ellis, Gurans Limbu, Daniel Morris)  
 Dataset located on: 
 [Kaggle](https://www.kaggle.com/datasets/kelvinkelue/credit-card-fraud-prediction)
@@ -38,7 +38,8 @@ The project was broken into 7 parts.
 6.  Selecting "best" algorithim from the set of algroithims assessed for hyperparamater tuning.
 7.  Tuning the chosen model for optimal performance
 ___
-## Part 1 Descriptive Analysis  
+## Part 1 Descriptive Analysis 
+
 ___
 ## Part 2 Target Variable Review
 The dataset consisted of 555718 transaction records of which 2145 were fraudulent (0.3860%).  The labels therefore are highly imbalanced and steps were taken to address the impact of this imbalance on the models.  
@@ -90,24 +91,24 @@ The following models were reviewed for their ability to achieve a balanced accur
 
 The logistic regression model as illustrated above has a mediocre performance when attempting to predict the fraudulent records in the test set as evidenced by the recall of 0.05 where approximately 1 in every 20 fraudulent transactions were detected.  This low performance is further illustrated by the 0.52 balanced accuracy score achieved.  Based on this result we moved onto a non-linear model.
 
-### 2. Support Vector Machine with RBF kernel
-`       Confusion Matrix: SVM with kernal rbf`  
-`       Predicted Legitimate 0	Predicted Fraudulent 1`  
-`Legitimate 0 138364	               21`  
-`Fraudulent 1 410	               135`  
-`Accuracy Score :          0.9968977182753905`  
-`Balanced Accuracy Score:  0.6237773357336748`  
-`                        Classification Report`  
-`              precision    recall  f1-score   support`
+### 2. K-Nearest Neighbors  
+`         Confusion Matrix: KNNModelclassifier``         
+Predicted Legitimate 0	Predicted Fraudulent `  1`
+Legitimate 0	13837                    7`  	`8
+Fraudulent 1	5                    4`  2`	3
+Accuracy Score : 0.996041171813`1`433
+Balanced Accuracy Score: 0.50272338871`1`                       1247
+Classification `  R`eport
+              precision    recall  f1-score   `  su`pport
 
-`           0       1.00      1.00      1.00    138385`  
-`           1       0.87      0.25      0.39       545`  
+           0       1.00      1.00      1.00 `   `  138385
+           1       0.27      0.01      0.01`   `     545
 
-`    accuracy                           1.00    138930`  
-`   macro avg       0.93      0.62      0.69    138930`  
-`weighted avg       1.00      1.00      1.00    138930`  
+    accuracy                           1.`  0`0    138930
+   macro avg       0.63      0.50      0`  .`50    138930
+weighted avg       0.99      1.00      `  0.99    138930
 
-The non-linear model chosen was based on a Support Vector Machine with the radial bias funtion (rbf) kernel.  The resulting algorithm resulted in a marginal (0.10) improvement in the balanced accuracy score and a 5x improvement in recall over the Logistic Regression Model above.  Although performing better there was definitely room to improve both the recall at 0.39 and balanced accuracy scores at 0.62.
+In our evaluation of the KNN model for predicting fraudulent transactions, we achieved an impressive overall accuracy of 99.60%, indicating its proficiency in classifying transactions accurately. However, the dataset's imbalance is evident in the balanced accuracy score of 50.27%, revealing limitations in its performance. While the model excels in identifying legitimate transactions, it struggles with fraudulent ones, as indicated by the low recall of 1%. This leads to numerous false negatives, missing instances of fraud. Additionally, the precision of 27% highlights a high rate of false positives, where legitimate transactions are misclassified. These findings underscore the importance of refining or exploring alternative models to enhance fraud detection capabilities. Although the KNN model demonstrates strong accuracy overall, addressing its limitations in correctly identifying fraudulent transactions is paramount for effective fraud prevention strategies.
 
 ### 3. Random Forest Classifier
 `       Confusion Matrix: RandomForestClasssifer`  
@@ -128,9 +129,9 @@ The non-linear model chosen was based on a Support Vector Machine with the radia
 
 The random forest classifier generated the following feature importances:  
 ![Random Forest Feature Importance](img/RandomForestImportance.png)  
-Next we reviewed an ensemble random forest model which was much more performant than the previous two models. With this model we started to see a more acceptable balanced accuracy score (0.81) but the model was able to predict fraudulent transacitons 62% of the time.
+Next we reviewed an ensemble random forest model which was much more performant than the previous two models. With this model we started to see a more acceptable balanced accuracy score (0.81) but the model was able to predict fraudulent transacitons 62% o  . X time.
 
-### 4. XGBoost with postive scaling of labels
+### 4. iXGBoost with postive scaling of labels
 `        Confusion Matrix: XGBoost Baseline Model`  
 `        Predicted Legitimate 0 	Predicted Fraudulent 1`  
 `Legitimate 0	137580	                 805`  
@@ -148,14 +149,14 @@ Next we reviewed an ensemble random forest model which was much more performant 
 `weighted avg       1.00      0.99      1.00    138930`  
 
 
-Given the high target imbalance the XGBoost model with it's ability to accept a parameter which helps to compensate for the class imbalance, performs much better than the other algorothims considered.  The parameter [2](Footnotes:)'scale_pos_weights' is set to the ratio of negative transactions to positive transactions. (sum(negative_y)/sum(positive_y)) or 259.0 which when applied removes the imbalance in the target classes.
+Given the high ,target imbalance t,he XGBoost model with it's ability to aceter which helps to compensate for the class imbalance, performs much better thanthe other algorothims considered.  The parameter [2](Footnotes:)'scale_pos_weights' is set to the ratio of negative transactions to positive transactions. (sum(negative_y)/sum(positive_y)) or 259.0 which when applied removes the imbalance in th during model fittinge target classes.
 
 ![XGBoost Classifier Base Model Feature Importance](img/XGB_base_importances.png)
 ## Part 6 Algorithm Selection
 After reviewing the model results XGBoost was selected for hyper-parameter tuning because:
 1. XGBoost has facilities to address imbalance in the target class.
-2. XGBoost has a robust parameter framework to support tuning.
-3. XGBoost showed the most promising results from the algorithms reviewed.
+2. XGBoost has a robust parameter fram hyper-parameterework to support tuning.
+3. XGBoost showed the most p in the objective metric (balanced accuracy)romising results from the algorithms reviewed.
 ___
 ## Part 7 Tuning XGBoost and selecting the best model.
 The parameters selected to be tuned were:  
@@ -187,6 +188,9 @@ The tuning objective was set to maximize the balance accuracy score and secondar
 `weighted avg       1.00      0.98      0.99    138930`  
 
 ![XGBoost Classifer BEST Model Feature Importance](img/XGB_best_importances.png)
+
+## Comparative Feature Importance by Model
+One constant howerver is the log_amount of the transaction is the most significant feature in each model.  Beyond that the importance of the features differs significantly from model to model. The XGBoost Base Model and XGBoost BEST model share a number of features in common when ranked by importance. An opportunity for further analysis may be to remove some of the least significant features from model consideration in the XGBoost best Model and see if the performance improves.
 
 ![Comparative Feature Importance by Model](img/Comparative_Importance.png)
 ___
