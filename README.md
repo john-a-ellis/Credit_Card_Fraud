@@ -104,7 +104,7 @@ The following models were reviewed for their ability to achieve a balanced accur
 `         Confusion Matrix: LogisticRegression`  
 `         Predicted Legitimate 0	Predicted Fraudulent 1`  
 `Legitimate 0	138366	                    19`  
-`Fraudulent 1	520	                    25`  
+`Fraudulent 1      520	                  25`  
 `Accuracy Score :         0.9961`  
 `Balanced Accuracy Score: 0.5229`  
 `                        Classification Report`  
