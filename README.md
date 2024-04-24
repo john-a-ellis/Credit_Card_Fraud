@@ -143,7 +143,7 @@ In our evaluation of the KNN model for predicting fraudulent transactions, we ac
 `       Predicted Legitimate 0	Predicted Fraudulent 1`  
 `Legitimate 0 138352	               33`  
 `Fraudulent 1    208	           337`  
-`Accuracy Score : 0.9983`  
+`Accuracy Score :         0.9983`  
 `Balanced Accuracy Score: 0.8091`  
 `                       Classification Report`  
 `              precision    recall  f1-score   support`  
@@ -203,7 +203,7 @@ The tuning objective was set to maximize the balance accuracy score and secondar
 `          Predicted Legitimate 0	Predicted Fraudulent 1`  
 `Legitimate 0	135526	                2859`    
 `Fraudulent 1	10	                 535`  
-`Accuracy Score : 0.9793`  
+`Accuracy Score:          0.9793`  
 `Balanced Accuracy Score: 0.9805`   
 `                       Classification Report`  
 `              precision    recall  f1-score   support`  
