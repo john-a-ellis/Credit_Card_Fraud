@@ -48,19 +48,21 @@ ___
 After performing a descriptive analysis of the data a number of features were dropped or created then encoded/transformed and scaled:   
 1. **Dropped Features**: 'First' Name, 'Last' Name, 'cc_num', 'street', 'city', 'state', 'dob', 'Trans_num', 'Unix_time', 'Lat', 'Long', 'Merch_lat', 'Merch_long'
 2. **Created Features**: 'Region', an amalgamation of U.S. States according to the  [U.S. Bureau of Economic Analysis](https://www.bea.gov/). Age_years, the age of the cardholder based on the difference between today's date and the cardholders DOB. Distance_km, the distance between the cardholders latitude and longitude and the merchants latitude and longitude.
-3. **Encoded Features with few categories**: binary or get_dummies encoding - 'catagories', 'gender', 'region'. 
+3. **Encoding Features with few categories**: binary or get_dummies encoding was used to encode the 'catagories', 'gender', 'region' features which had fewer than 20 members.
 4. **Transformed Features**: amt (Transaction Amount) due to the very high dispersion in this feature it was transformed by the natural log.  
 ![original amt distribution](img/amount.png)
 ![amt transformed to a log distribution](img/amount_log.png)
 
-5. The resulting data set was split into training and testing sets with 75% of the data used for training and 25% was used for testing.  Due to the very high imbalance in target labels (classes) the training and test splits were reviewed to ensure an adequate number of labels were assigned to each set.    
+5. **Spliting into Training and Testing Sets**: The resulting data set was split into training and testing sets with 75% of the data used for training and 25% was used for testing.  Due to the very high imbalance in target labels (classes) the training and test splits were reviewed to ensure an adequate number of labels were assigned to each set.    
                 `Average class probability in data set:     0.003860`  
                 `Average class probability in training set: 0.003839`  
-                `Average class probability in test set:     0.003923`  
+                `Average class probability in test set:     0.003923`
+
+6. The distribution of the y_postive and y_negative labels were reviewed.  
 ![Distribution of Postive y](img/Distribution_of_y_pos.png)
 ![Distribution of Negative y](img/Distribution_of_y_neg.png)
 
-6. **Encoding Features with Extensive Categories**: Target encoding - 'merchants', 'jobs' was applied after splitting the data into train and test sets.  The target encoder was just fit to the training data, the resulting encoder was applied to both the training and testing sets.
+6. **Encoding Features with Extensive Categories**: Target encoding was used to encode the 'merchants', 'jobs' features.  It was applied after the data had been split into train and test sets.  The target encoder was fit to the training data, the resulting encoder was used to transform both the training and testing sets.
 7. **Scaling**: Sci-kit Learns standard scaler was fit to the training features and both the training and testing features were transformed with the resulting scaler.   
 ___
 ## Part 4 Selection of the objective metrics for model assessment
@@ -185,11 +187,14 @@ The tuning objective was set to maximize the balance accuracy score and secondar
 `weighted avg       1.00      0.98      0.99    138930`  
 
 ![XGBoost Classifer BEST Model Feature Importance](img/XGB_best_importances.png)
+
+![Comparative Feature Importance by Model](img/Comparative_importance.png)
 ___
 # Footnotes:
-[Scikit Learn Balanced Accuracy Score](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.balanced_accuracy_score.html#sklearn.metrics.balanced_accuracy_score) 
+[1]
+[Scikit Learn - Balanced Accuracy Score](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.balanced_accuracy_score.html#sklearn.metrics.balanced_accuracy_score)  
 [2]
-[XGBoost Control of positive and negative weights](https://xgboost.readthedocs.io/en/stable/parameter.html)
+[XGBoost - Control of positive and negative weights](https://xgboost.readthedocs.io/en/stable/parameter.html)
 
 
 The following data science and visualization technologies were used in creating this analysis:
