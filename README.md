@@ -39,7 +39,35 @@ The project was broken into 7 parts.
 7.  Tuning the chosen model for optimal performance
 ___
 ## Part 1 Descriptive Analysis 
+![Demographics vs Fraudulent Transactions](img/demographics.png)
+The fraud rates of males are higher than female rates, and the age with the highest incidence of fraud is 38
 
+![Top 10 Merchants by Fraudulent Transactions](img/top_10.png)
+Top 10 Merchants by Fraudulent Transactions
+In the chart showing 'Top 10 Merchants by Fraudulent Transactions', we see that fraud
+isn't uniformly distributed across merchants. Certain merchants like 'fraud_Romaguera,
+Cruickshank and Greenholt' have higher instances of fraud, which may suggest either targeted attacks by fraudsters
+or potential vulnerabilities in the merchant's transaction processing systems.
+
+Fraudulent Transactions as a Percentage of Total Transactions
+Finally, the chart 'Fraudulent Transactions as a % of Total Transactions' offers a different perspective,
+showing that while some merchants may have a high number of fraudulent transactions in absolute terms,
+it represents a smaller fraction of their total transaction volume. Conversely, other merchants have a higher
+percentage of their transactions flagged as fraudulent, which could be concerning despite a lower overall number
+of transactions.
+![Top 20 Merchants](img/top_20_merchants.png)
+The 'Top 20 Merchants by Transaction Volume' chart highlights merchants with high transaction volumes,
+which could be due to several factors such as widespread locations, diverse offerings,
+or competitive pricing strategies that attract more customers.  
+
+![Monthly Transaction Volume](img/monthly.png)  
+The 'Monthly Transaction Volume' chart reinforces the idea of increased end-of-year spending with a
+dramatic spike in December, likely due to holiday shopping.
+
+![Transaction value over time](img/Transaction_Value.png)
+The 'Transaction Volume Over Time' chart exhibits a clear cyclical pattern, indicating weekly fluctuations
+in transaction volume. Peaks might correspond with weekends or paydays when consumers are more likely to spend.
+The rising trend towards the year's end suggests increased spending during the holiday season.
 ___
 ## Part 2 Target Variable Review
 The dataset consisted of 555718 transaction records of which 2145 were fraudulent (0.3860%).  The labels therefore are highly imbalanced and steps were taken to address the impact of this imbalance on the models.  
@@ -47,19 +75,19 @@ The dataset consisted of 555718 transaction records of which 2145 were fraudulen
 ___
 ## Part 3 Feature Engineering and Data Preprocessing
 After performing a descriptive analysis of the data a number of features were dropped or created then encoded/transformed and scaled:   
-1. **Dropped Features**: 'First' Name, 'Last' Name, 'cc_num', 'street', 'city', 'state', 'dob', 'Trans_num', 'Unix_time', 'Lat', 'Long', 'Merch_lat', 'Merch_long'
-2. **Created Features**: 'Region', an amalgamation of U.S. States according to the  [U.S. Bureau of Economic Analysis](https://www.bea.gov/). Age_years, the age of the cardholder based on the difference between today's date and the cardholders DOB. Distance_km, the distance between the cardholders latitude and longitude and the merchants latitude and longitude.
-3. **Encoding Features with few categories**: binary or get_dummies encoding was used to encode the 'catagories', 'gender', 'region' features which had fewer than 20 members.
-4. **Transformed Features**: amt (Transaction Amount) due to the very high dispersion in this feature it was transformed by the natural log.  
+1. **Dropped Features**: 'First' Name, 'Last' Name, 'cc_num', 'street', 'city', 'state', 'dob', 'Trans_num', 'Unix_time', 'Lat', 'Long', 'Merch_lat', 'Merch_long'.  The personal identification data was dropped as we didn't want it to influence the analysis, we wanted to find the fraudulent customer without knowing their exact ID.
+3. **Created Features**: 'Region', an amalgamation of U.S. States according to the  [U.S. Bureau of Economic Analysis](https://www.bea.gov/). Age_years, the age of the cardholder based on the difference between today's date and the cardholders DOB. Distance_km, the distance between the cardholders latitude and longitude and the merchants latitude and longitude.
+4. **Encoding Features with few categories**: binary or get_dummies encoding was used to encode the 'catagories', 'gender', 'region' features which had fewer than 20 members.
+5. **Transformed Features**: amt (Transaction Amount) due to the very high dispersion in this feature it was transformed by the natural log.  
 ![original amt distribution](img/amount.png)
 ![amt transformed to a log distribution](img/amount_log.png)
 
-5. **Spliting into Training and Testing Sets**: The resulting data set was split into training and testing sets with 75% of the data used for training and 25% was used for testing.  Due to the very high imbalance in target labels (classes) the training and test splits were reviewed to ensure an adequate number of labels were assigned to each set.    
+6. **Spliting into Training and Testing Sets**: The resulting data set was split into training and testing sets with 75% of the data used for training and 25% was used for testing.  Due to the very high imbalance in target labels (classes) the training and test splits were reviewed to ensure an adequate number of labels were assigned to each set.    
                 `Average class probability in data set:     0.003860`  
                 `Average class probability in training set: 0.003839`  
                 `Average class probability in test set:     0.003923`
 
-6. The distribution of the y_postive and y_negative labels were reviewed.  
+7. The distribution of the y_postive and y_negative labels were reviewed.  
 ![Distribution of Postive y](img/Distribution_of_y_pos.png)
 ![Distribution of Negative y](img/Distribution_of_y_neg.png)
 
@@ -75,10 +103,10 @@ The following models were reviewed for their ability to achieve a balanced accur
 ### 1. Logistic Regression  
 `         Confusion Matrix: LogisticRegression`  
 `         Predicted Legitimate 0	Predicted Fraudulent 1`  
-`Legitimate 0	138366	                   19`  
-`Fraudulent 1	520	                    25`  
-`Accuracy Score :         0.9961203483768805`  
-`Balanced Accuracy Score: 0.5228671307577285`  
+`Legitimate 0	138366	                    19`  
+`Fraudulent 1      520	                    25`  
+`Accuracy Score :         0.9961`  
+`Balanced Accuracy Score: 0.5229`  
 `                        Classification Report`  
 `              precision    recall  f1-score   support`  
 
@@ -86,28 +114,27 @@ The following models were reviewed for their ability to achieve a balanced accur
            1       0.57      0.05      0.08       545
 
 `    accuracy                           1.00    138930`  
-`   macro avg       0.78      0.52      0.54    138930`
+`   macro avg       0.78      0.52      0.54    138930`  
 `weighted avg       0.99      1.00      0.99    138930`
 
 The logistic regression model as illustrated above has a mediocre performance when attempting to predict the fraudulent records in the test set as evidenced by the recall of 0.05 where approximately 1 in every 20 fraudulent transactions were detected.  This low performance is further illustrated by the 0.52 balanced accuracy score achieved.  Based on this result we moved onto a non-linear model.
 
 ### 2. K-Nearest Neighbors  
-`         Confusion Matrix: KNNModelclassifier`
-`         
-Predicted Legitimate 0	Predicted Fraudulent `  1`
-Legitimate 0	13837                    7`  	`8
-Fraudulent 1	5                    4`  2`	3
-Accuracy Score : 0.996041171813`1`433
-Balanced Accuracy Score: 0.50272338871`1`                       1247
-Classification `  R`eport
-              precision    recall  f1-score   `  su`pport
+`        Confusion Matrix: KNNModelclassifier`  
+`        Predicted Legitimate 0	Predicted Fraudulent 1`  
+`Legitimate 0  138377	                 8`  
+`Fraudulent 1     542	                 3`  
+`Accuracy Score :         0.9960`  
+`Balanced Accuracy Score: 0.5027`  
+`                         Classification Report`  
+`              precision    recall  f1-score   support`  
 
-           0       1.00      1.00      1.00 `   `  138385
-           1       0.27      0.01      0.01`   `     545
+`           0       1.00      1.00      1.00    138385`  
+`           1       0.27      0.01      0.01       545`  
 
-    accuracy                           1.`  0`0    138930
-   macro avg       0.63      0.50      0`  .`50    138930
-weighted avg       0.99      1.00      `  0.99    138930
+`    accuracy                           1.00    138930`  
+`   macro avg       0.63      0.50      0.50    138930`   
+`weighted avg       0.99      1.00      0.99    138930`  
 
 In our evaluation of the KNN model for predicting fraudulent transactions, we achieved an impressive overall accuracy of 99.60%, indicating its proficiency in classifying transactions accurately. However, the dataset's imbalance is evident in the balanced accuracy score of 50.27%, revealing limitations in its performance. While the model excels in identifying legitimate transactions, it struggles with fraudulent ones, as indicated by the low recall of 1%. This leads to numerous false negatives, missing instances of fraud. Additionally, the precision of 27% highlights a high rate of false positives, where legitimate transactions are misclassified. These findings underscore the importance of refining or exploring alternative models to enhance fraud detection capabilities. Although the KNN model demonstrates strong accuracy overall, addressing its limitations in correctly identifying fraudulent transactions is paramount for effective fraud prevention strategies.
 
@@ -115,9 +142,9 @@ In our evaluation of the KNN model for predicting fraudulent transactions, we ac
 `       Confusion Matrix: RandomForestClasssifer`  
 `       Predicted Legitimate 0	Predicted Fraudulent 1`  
 `Legitimate 0 138352	               33`  
-`Fraudulent 1    208	           337`  
-`Accuracy Score : 0.9982653134672137`  
-`Balanced Accuracy Score: 0.8090550793508205`  
+`Fraudulent 1    208	              337`  
+`Accuracy Score :         0.9983`  
+`Balanced Accuracy Score: 0.8091`  
 `                       Classification Report`  
 `              precision    recall  f1-score   support`  
 
@@ -132,13 +159,13 @@ The random forest classifier generated the following feature importances:
 ![Random Forest Feature Importance](img/RandomForestImportance.png)  
 Next we reviewed an ensemble random forest model which was much more performant than the previous two models. With this model we started to see a more acceptable balanced accuracy score (0.81) but the model was able to predict fraudulent transacitons 62% o  . X time.
 
-### 4. iXGBoost with postive scaling of labels
+### 4. XGBoost with postive scaling of labels
 `        Confusion Matrix: XGBoost Baseline Model`  
 `        Predicted Legitimate 0 	Predicted Fraudulent 1`  
 `Legitimate 0	137580	                 805`  
-`Fraudulent 1	50	                  495`
-`Accuracy Score :         0.9938458216367955`    
-`Balanced Accuracy Score: 0.9512198881394911`  
+`Fraudulent 1	    50	                 495`  
+`Accuracy Score :         0.9938`    
+`Balanced Accuracy Score: 0.9512`  
 `                       Classification Report`  
 `              precision    recall  f1-score   support`  
 
@@ -175,9 +202,9 @@ The tuning objective was set to maximize the balance accuracy score and secondar
 `          Confusion Matrix: XGBoost Grid Search Best Model`   
 `          Predicted Legitimate 0	Predicted Fraudulent 1`  
 `Legitimate 0	135526	                2859`    
-`Fraudulent 1	10	                  535`  
-`Accuracy Score : 0.9793493126034694`  
-`Balanced Accuracy Score: 0.9804958112803894`   
+`Fraudulent 1	    10	                 535`  
+`Accuracy Score:          0.9793`  
+`Balanced Accuracy Score: 0.9805`   
 `                       Classification Report`  
 `              precision    recall  f1-score   support`  
 
