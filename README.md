@@ -114,7 +114,7 @@ The following models were reviewed for their ability to achieve a balanced accur
            1       0.57      0.05      0.08       545
 
 `    accuracy                           1.00    138930`  
-`   macro avg       0.78      0.52      0.54    138930`
+`   macro avg       0.78      0.52      0.54    138930`  
 `weighted avg       0.99      1.00      0.99    138930`
 
 The logistic regression model as illustrated above has a mediocre performance when attempting to predict the fraudulent records in the test set as evidenced by the recall of 0.05 where approximately 1 in every 20 fraudulent transactions were detected.  This low performance is further illustrated by the 0.52 balanced accuracy score achieved.  Based on this result we moved onto a non-linear model.
@@ -124,7 +124,7 @@ The logistic regression model as illustrated above has a mediocre performance wh
 `        Predicted Legitimate 0	Predicted Fraudulent 1`  
 `Legitimate 0  138377	                8`  
 `Fraudulent 1     542	                  3`  
-`Accuracy Score :         0.9960`
+`Accuracy Score :         0.9960`  
 `Balanced Accuracy Score: 0.5027`  
 `                         Classification Report`  
 `              precision    recall  f1-score   support`  
@@ -163,7 +163,7 @@ Next we reviewed an ensemble random forest model which was much more performant 
 `        Confusion Matrix: XGBoost Baseline Model`  
 `        Predicted Legitimate 0 	Predicted Fraudulent 1`  
 `Legitimate 0	137580	                 805`  
-`Fraudulent 1	50	                  495`
+`Fraudulent 1	50	                 495`  
 `Accuracy Score :         0.9938`    
 `Balanced Accuracy Score: 0.9512`  
 `                       Classification Report`  
@@ -202,7 +202,7 @@ The tuning objective was set to maximize the balance accuracy score and secondar
 `          Confusion Matrix: XGBoost Grid Search Best Model`   
 `          Predicted Legitimate 0	Predicted Fraudulent 1`  
 `Legitimate 0	135526	                2859`    
-`Fraudulent 1	10	                  535`  
+`Fraudulent 1	10	                 535`  
 `Accuracy Score : 0.9793`  
 `Balanced Accuracy Score: 0.9805`   
 `                       Classification Report`  
