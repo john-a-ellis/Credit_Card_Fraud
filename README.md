@@ -29,13 +29,14 @@ To create a binary classification machine learning model to identify fraudulent 
 21. Merch_long: Merchant's location (longitude).
 22. Is_fraud:Fraudulent transaction indicator (1 = fraud, 0 = legitimate). This is the target variable for classification purposes.
 
-The project was broken into 6 parts.
+The project was broken into 7 parts.
 1.  Descriptive analysis:  a review of the features and how they relate to the target variable.
 2.  Target variable review  
 3.  Feature Engineering and Data Preprocessing   
 4.  Selection of the objective metric(s) for model assessment.
 5.  Assessing various types of machine learning algorithims with minimal tuning.
 6.  Selecting "best" algorithim from the set of algroithims assessed for hyperparamater tuning.
+7.  Tuning the chosen model for optimal performance
 ___
 ## Part 1 Descriptive Analysis  
 ___
@@ -46,18 +47,21 @@ ___
 ## Part 3 Feature Engineering and Data Preprocessing
 After performing a descriptive analysis of the data a number of features were dropped or created then encoded/transformed and scaled:   
 1. **Dropped Features**: 'First' Name, 'Last' Name, 'cc_num', 'street', 'city', 'state', 'dob', 'Trans_num', 'Unix_time', 'Lat', 'Long', 'Merch_lat', 'Merch_long'
-2. **Created Features**: 'Region', an amalgamation of U.S. States according to the  U.S. Bureau of Economic Analysis. Age_years, the age of the cardholder based on the difference between today's date and the cardholders DOB. Distance_km, the distance between the cardholders latitude and longitude and the merchants latitude and longitude.
-3. **Encoded Features**: binary or get_dummies encoding - 'catagories', 'gender', 'region'. Target encoding - merchants, jobs.  Target encoding was used for feature preservation in categorical features with extensive catagories.
-4. **Transformed Features**: amt (Transaction Amount) due to the very high dispersion in this feature it was transformed by the natural log.
+2. **Created Features**: 'Region', an amalgamation of U.S. States according to the  [U.S. Bureau of Economic Analysis](https://www.bea.gov/). Age_years, the age of the cardholder based on the difference between today's date and the cardholders DOB. Distance_km, the distance between the cardholders latitude and longitude and the merchants latitude and longitude.
+3. **Encoded Features with few categories**: binary or get_dummies encoding - 'catagories', 'gender', 'region'. 
+4. **Transformed Features**: amt (Transaction Amount) due to the very high dispersion in this feature it was transformed by the natural log.  
 ![original amt distribution](img/amount.png)
 ![amt transformed to a log distribution](img/amount_log.png)
 
-6. The resulting dataset after all preprocessing steps were applied was scaled using the standard_scaler, and split into training and testing sets with 75% of the data used for training and 25% was used for testing.  Due to the very high imbalance in target labels (classes) the training and test splits were reviewed to ensure an adequate number of labels were assigned to each set.  
+5. The resulting data set was split into training and testing sets with 75% of the data used for training and 25% was used for testing.  Due to the very high imbalance in target labels (classes) the training and test splits were reviewed to ensure an adequate number of labels were assigned to each set.    
                 `Average class probability in data set:     0.003860`  
                 `Average class probability in training set: 0.003839`  
                 `Average class probability in test set:     0.003923`  
 ![Distribution of Postive y](img/Distribution_of_y_pos.png)
 ![Distribution of Negative y](img/Distribution_of_y_neg.png)
+
+6. **Encoding Features with Extensive Categories**: Target encoding - 'merchants', 'jobs' was applied after splitting the data into train and test sets.  The target encoder was just fit to the training data, the resulting encoder was applied to both the training and testing sets.
+7. **Scaling**: Sci-kit Learns standard scaler was fit to the training features and both the training and testing features were transformed with the resulting scaler.   
 ___
 ## Part 4 Selection of the objective metrics for model assessment
 As recommended by Scikit Learn[1] Balanced Accuracy is a more appropriate objective metric over accuracy when working with imbalanced classes in the target, as it weighs each sample according to the inverse prevlaence of its true class.  It is this metric that is used to assess each model's performance.
@@ -101,7 +105,7 @@ The logistic regression model as illustrated above has a mediocre performance wh
 `   macro avg       0.93      0.62      0.69    138930`  
 `weighted avg       1.00      1.00      1.00    138930`  
 
-The non-linear model chosen was based on a Support Vector Machine with the radial bias funtion (rbf) kernel.  The resulting algorithm resulted in a marginally better (0.10) improvement in the balanced accuracy score and a 5x improvement in recall over the Logistic Regression Model above.  Although performing better there was definitely room to improve both the recall at 0.39 and balanced accuracy scores at 0.62.
+The non-linear model chosen was based on a Support Vector Machine with the radial bias funtion (rbf) kernel.  The resulting algorithm resulted in a marginal (0.10) improvement in the balanced accuracy score and a 5x improvement in recall over the Logistic Regression Model above.  Although performing better there was definitely room to improve both the recall at 0.39 and balanced accuracy scores at 0.62.
 
 ### 3. Random Forest Classifier
 `       Confusion Matrix: RandomForestClasssifer`  
@@ -141,22 +145,23 @@ Next we reviewed an ensemble random forest model which was much more performant 
 `   macro avg       0.69      0.95      0.77    138930`  
 `weighted avg       1.00      0.99      1.00    138930`  
 
-Given the high target imbalance the XGBoost model with it's ability to accept a parameter which helps to compensate for the class imbalance, performs much better than the other algorothims considered.  The parameter 'scale_pos_weights' is set to the ratio of negative transactions to positive transactions. (sum(postive_y)/sum(negative_y)) or 259.0 which when applied removes the imbalance in the target classes.
-![XGBoost Classifier Base Model Feature Importance](img/XGB_base_importances.png)
 
-___
-## Part 6 Tuning XGBoost and selecting the best model.
+Given the high target imbalance the XGBoost model with it's ability to accept a parameter which helps to compensate for the class imbalance, performs much better than the other algorothims considered.  The parameter [2]'scale_pos_weights' is set to the ratio of negative transactions to positive transactions. (sum(postive_y)/sum(negative_y)) or 259.0 which when applied removes the imbalance in the target classes.
+
+![XGBoost Classifier Base Model Feature Importance](img/XGB_base_importances.png)
+## Part 6 Algorithm Selection
 After reviewing the model results XGBoost was selected for hyper-parameter tuning because:
 1. XGBoost has facilities to address imbalance in the target class.
 2. XGBoost has a robust parameter framework to support tuning.
-3. XGBosst showed the most promising results from the models reviewed.
-
+3. XGBoost showed the most promising results from the algorithms reviewed.
+___
+## Part 7 Tuning XGBoost and selecting the best model.
 The parameters selected to be tuned were:  
 1. The number of boosting rounds to run (32,64,128,256,512) 
 2. The maximum depth of the trees created (2, 4, 6, 8, 10, 12)  
 3. This results in 30 distinct models being evaluated.
 
-The results ewre as follows:
+The results were as follows:
 1. From the 30 models run by the tuner, 6 (20%) of the models met the primary requirement of meeting 0.965 balanced accuracy.
 2. From the 6 models 3 (50%) met the requirement of being within 1 standard deviation of the model with the highest balanced accuracy.
 3. Of these 3 models the one with which rendered the fastest prediction was selected as the **BEST** model.  
@@ -178,11 +183,14 @@ The tuning objective was set to maximize the balance accuracy score and secondar
 `    accuracy                           0.98    138930`  
 `   macro avg       0.58      0.98      0.63    138930`  
 `weighted avg       1.00      0.98      0.99    138930`  
+
 ![XGBoost Classifer BEST Model Feature Importance](img/XGB_best_importances.png)
-
-
+___
+Footnotes:
+[1]
 [Scikit Learn Balanced Accuracy Score](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.balanced_accuracy_score.html#sklearn.metrics.balanced_accuracy_score) 
-
+[2]
+[
 The following data science and visualization technologies were used in creating this analysis:
 
 ![https://scikit-learn.org/stable/index.html](https://scikit-learn.org/stable/_images/scikit-learn-logo-notext.png)  
