@@ -75,19 +75,19 @@ The dataset consisted of 555718 transaction records of which 2145 were fraudulen
 ___
 ## Part 3 Feature Engineering and Data Preprocessing
 After performing a descriptive analysis of the data a number of features were dropped or created then encoded/transformed and scaled:   
-1. **Dropped Features**: 'First' Name, 'Last' Name, 'cc_num', 'street', 'city', 'state', 'dob', 'Trans_num', 'Unix_time', 'Lat', 'Long', 'Merch_lat', 'Merch_long'
-2. **Created Features**: 'Region', an amalgamation of U.S. States according to the  [U.S. Bureau of Economic Analysis](https://www.bea.gov/). Age_years, the age of the cardholder based on the difference between today's date and the cardholders DOB. Distance_km, the distance between the cardholders latitude and longitude and the merchants latitude and longitude.
-3. **Encoding Features with few categories**: binary or get_dummies encoding was used to encode the 'catagories', 'gender', 'region' features which had fewer than 20 members.
-4. **Transformed Features**: amt (Transaction Amount) due to the very high dispersion in this feature it was transformed by the natural log.  
+1. **Dropped Features**: 'First' Name, 'Last' Name, 'cc_num', 'street', 'city', 'state', 'dob', 'Trans_num', 'Unix_time', 'Lat', 'Long', 'Merch_lat', 'Merch_long'.  The personal identification data was dropped as we didn't want it to influence the analysis, we wanted to find the fraudulent customer without knowing their exact ID.
+3. **Created Features**: 'Region', an amalgamation of U.S. States according to the  [U.S. Bureau of Economic Analysis](https://www.bea.gov/). Age_years, the age of the cardholder based on the difference between today's date and the cardholders DOB. Distance_km, the distance between the cardholders latitude and longitude and the merchants latitude and longitude.
+4. **Encoding Features with few categories**: binary or get_dummies encoding was used to encode the 'catagories', 'gender', 'region' features which had fewer than 20 members.
+5. **Transformed Features**: amt (Transaction Amount) due to the very high dispersion in this feature it was transformed by the natural log.  
 ![original amt distribution](img/amount.png)
 ![amt transformed to a log distribution](img/amount_log.png)
 
-5. **Spliting into Training and Testing Sets**: The resulting data set was split into training and testing sets with 75% of the data used for training and 25% was used for testing.  Due to the very high imbalance in target labels (classes) the training and test splits were reviewed to ensure an adequate number of labels were assigned to each set.    
+6. **Spliting into Training and Testing Sets**: The resulting data set was split into training and testing sets with 75% of the data used for training and 25% was used for testing.  Due to the very high imbalance in target labels (classes) the training and test splits were reviewed to ensure an adequate number of labels were assigned to each set.    
                 `Average class probability in data set:     0.003860`  
                 `Average class probability in training set: 0.003839`  
                 `Average class probability in test set:     0.003923`
 
-6. The distribution of the y_postive and y_negative labels were reviewed.  
+7. The distribution of the y_postive and y_negative labels were reviewed.  
 ![Distribution of Postive y](img/Distribution_of_y_pos.png)
 ![Distribution of Negative y](img/Distribution_of_y_neg.png)
 
@@ -143,8 +143,8 @@ In our evaluation of the KNN model for predicting fraudulent transactions, we ac
 `       Predicted Legitimate 0	Predicted Fraudulent 1`  
 `Legitimate 0 138352	               33`  
 `Fraudulent 1    208	           337`  
-`Accuracy Score : 0.9982653134672137`  
-`Balanced Accuracy Score: 0.8090550793508205`  
+`Accuracy Score : 0.9983`  
+`Balanced Accuracy Score: 0.8091`  
 `                       Classification Report`  
 `              precision    recall  f1-score   support`  
 
@@ -164,8 +164,8 @@ Next we reviewed an ensemble random forest model which was much more performant 
 `        Predicted Legitimate 0 	Predicted Fraudulent 1`  
 `Legitimate 0	137580	                 805`  
 `Fraudulent 1	50	                  495`
-`Accuracy Score :         0.9938458216367955`    
-`Balanced Accuracy Score: 0.9512198881394911`  
+`Accuracy Score :         0.9938`    
+`Balanced Accuracy Score: 0.9512`  
 `                       Classification Report`  
 `              precision    recall  f1-score   support`  
 
@@ -203,8 +203,8 @@ The tuning objective was set to maximize the balance accuracy score and secondar
 `          Predicted Legitimate 0	Predicted Fraudulent 1`  
 `Legitimate 0	135526	                2859`    
 `Fraudulent 1	10	                  535`  
-`Accuracy Score : 0.9793493126034694`  
-`Balanced Accuracy Score: 0.9804958112803894`   
+`Accuracy Score : 0.9793`  
+`Balanced Accuracy Score: 0.9805`   
 `                       Classification Report`  
 `              precision    recall  f1-score   support`  
 
