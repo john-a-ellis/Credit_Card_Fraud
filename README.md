@@ -123,9 +123,9 @@ The logistic regression model as illustrated above has a mediocre performance wh
 `        Confusion Matrix: KNNModelclassifier`  
 `        Predicted Legitimate 0	Predicted Fraudulent 1`  
 `Legitimate 0  138377	                8`  
-`Fraudulent 1     542	                    3`  
+`Fraudulent 1     542	                  3`  
 `Accuracy Score :         0.9960`
-`Balanced Accuracy Score: 0.5027`
+`Balanced Accuracy Score: 0.5027`  
 `                         Classification Report`  
 `              precision    recall  f1-score   support`  
 
