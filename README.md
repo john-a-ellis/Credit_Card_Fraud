@@ -1,7 +1,8 @@
 # Credit Card Fraud Detection
 Credit Card Fraud Detection Project 4 Team 6  (Nesihlan Atar, John Ellis, Gurans Limbu, Daniel Morris)  
 Dataset located on: 
-[Kaggle](https://www.kaggle.com/datasets/kelvinkelue/credit-card-fraud-prediction)
+[Kaggle](https://www.kaggle.com/datasets/kelvinkelue/credit-card-fraud-prediction)  
+To run the notebooks supporting this analysis the Fraud_test.csv file must be placed in a folder called 'Resources' directly below the script folder.  
 
 ## An Overview of the project and its purpose:  
 To create a binary classification machine learning model to identify fraudulent transactions within a population of 555718 transactions.  The labelled dataset consisted of the following 22 features:  
@@ -69,12 +70,12 @@ The box plot below shows top 10 Merchants with the highest average transaction a
 The 'Monthly Transaction Volume' chart reinforces the idea of increased end-of-year spending with a
 dramatic spike in December, likely due to holiday shopping.
 
-![Fraudulent Transaction by Region](img/Fraudulent_Transaction_by_Region.png)
+![Fraudulent Transaction by Region](img/Fraudulent_Transaction_by_Region.png)  
 There appears to be signifciant variance in transactions by region.
 
 ![Population vs Number of Transactions per City](img/Population_vs_Number_of_Transactions_City.png)
 
-![Transaction value over time](img/Transaction_Value.png)
+![Transaction value over time](img/Transaction_Value.png)    
 The 'Transaction Volume Over Time' chart exhibits a clear cyclical pattern, indicating weekly fluctuations
 in transaction volume. Peaks might correspond with weekends or paydays when consumers are more likely to spend.
 The rising trend towards the year's end suggests increased spending during the holiday season.
@@ -85,19 +86,22 @@ The dataset consisted of 555718 transaction records of which 2145 were fraudulen
 ___
 ## Part 3 Feature Engineering and Data Preprocessing
 After performing a descriptive analysis of the data a number of features were dropped or created then encoded/transformed and scaled:   
-1. **Dropped Features**: 'First' Name, 'Last' Name, 'cc_num', 'street', 'city', 'state', 'dob', 'Trans_num', 'Unix_time', 'Lat', 'Long', 'Merch_lat', 'Merch_long'.  The personal identification data was dropped as we didn't want it to influence the analysis, we wanted to find the fraudulent customer without knowing their exact ID.
-3. **Created Features**: 'Region', an amalgamation of U.S. States according to the  [U.S. Bureau of Economic Analysis](https://www.bea.gov/). Age_years, the age of the cardholder based on the difference between today's date and the cardholders DOB. Distance_km, the distance between the cardholders latitude and longitude and the merchants latitude and longitude.
-4. **Encoding Features with few categories**: binary or get_dummies encoding was used to encode the 'catagories', 'gender', 'region' features which had fewer than 20 members.
-5. **Transformed Features**: amt (Transaction Amount) due to the very high dispersion in this feature it was transformed by the natural log.  
+1. **Dropped Features**: 'First' Name, 'Last' Name, 'cc_num', 'street', 'city', 'state', 'dob', 'Trans_num', 'Unix_time', 'Lat', 'Long', 'Merch_lat', 'Merch_long'.  The personal identification data was dropped as we didn't want it to influence the analysis, we wanted to find the fraudulent customer without knowing their exact ID.  Transaction features like Trans_num, Unix_Time were also dropped as they do not correlate to the incidence of fraud.  
+3. **Created Features**:  
+ - 'Region', an amalgamation of U.S. States according to the  [U.S. Bureau of Economic Analysis](https://www.bea.gov/).
+ - 'Age_years', the age of the cardholder based on the difference between today's date and the cardholders DOB.
+ - 'Distance_km', the distance between the cardholders latitude and longitude and the merchants latitude and longitude.
+4. **Encoding Features with few categories**: binary or get_dummies encoding was used to encode the 'catagories', 'gender', 'region',  features which had fewer than 20 members.
+6. **Transformed Features**: 'amt' (Transaction Amount) due to the very high dispersion in this feature it was transformed by the natural log.  
 ![original amt distribution](img/amount.png)
 ![amt transformed to a log distribution](img/amount_log.png)
 
-6. **Spliting into Training and Testing Sets**: The resulting data set was split into training and testing sets with 75% of the data used for training and 25% was used for testing.  Due to the very high imbalance in target labels (classes) the training and test splits were reviewed to ensure an adequate number of labels were assigned to each set.    
+7. **Spliting into Training and Testing Sets**: The resulting data set was split into training and testing sets with 75% of the data used for training and 25% was used for testing.  Due to the very high imbalance in target labels (classes) the training and test splits were reviewed to ensure an adequate number of labels were assigned to each set.    
                 `Average class probability in data set:     0.003860`  
                 `Average class probability in training set: 0.003839`  
                 `Average class probability in test set:     0.003923`
 
-7. The distribution of the y_postive and y_negative labels were reviewed.  
+8. The distribution of the y_postive and y_negative labels were reviewed.  
 ![Distribution of Postive y](img/Distribution_of_y_pos.png)
 ![Distribution of Negative y](img/Distribution_of_y_neg.png)
 
@@ -194,7 +198,7 @@ Given the high ,target imbalance t,he XGBoost model with it's ability to aceter 
 After reviewing the model results XGBoost was selected for hyper-parameter tuning because:
 1. XGBoost has facilities to address imbalance in the target class.
 2. XGBoost has a robust parameter fram hyper-parameterework to support tuning.
-3. XGBoost showed the most p in the objective metric (balanced accuracy)romising results from the algorithms reviewed.
+3. XGBoost showed the most performance in the objective metric (balanced accuracy) from the algorithms reviewed.
 ___
 ## Part 7 Tuning XGBoost and selecting the best model.
 The parameters selected to be tuned were:  
@@ -204,7 +208,7 @@ The parameters selected to be tuned were:
 
 The results were as follows:
 1. From the 30 models run by the tuner, 6 (20%) of the models met the primary requirement of meeting 0.965 balanced accuracy.
-2. From the 6 models 3 (50%) met the requirement of being within 1 standard deviation of the model with the highest balanced accuracy.
+2. From the 6 models 3 (50%) met the requirement of being within 1 standard deviation of the model with the highest precision.
 3. Of these 3 models the one with which rendered the fastest prediction was selected as the **BEST** model.  
 
 The tuning objective was set to maximize the balance accuracy score and secondarily model precision.  Precision was chosen in an attempt to minimize the rate of false positives. 
@@ -232,12 +236,16 @@ One constant howerver is the log_amount of the transaction is the most significa
 
 ![Comparative Feature Importance by Model](img/Comparative_Importance.png)
 ___
-# Footnotes:
+### Footnotes:
 [1]
 [Scikit Learn - Balanced Accuracy Score](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.balanced_accuracy_score.html#sklearn.metrics.balanced_accuracy_score)  
 [2]
 [XGBoost - Control of positive and negative weights](https://xgboost.readthedocs.io/en/stable/parameter.html)
-
+### Repository Structure:  
+- Root Folder: all scripts used to generate the analysis components
+- src\Fraud.py: a file of custom scripts used in the analysis.
+- img\various.png: a folder containing the images displayed in this README.md  
+___
 
 The following data science and visualization technologies were used in creating this analysis:
 
