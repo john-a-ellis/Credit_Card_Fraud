@@ -5,7 +5,7 @@ Dataset located on:
 To run the notebooks supporting this analysis the Fraud_test.csv file must be placed in a folder called 'Resources' directly below the folder containing the notebooks.  
 
 ## An Overview of the project and its purpose:  
-To create a binary classification machine learning model to identify fraudulent transactions within a population of 555718 transactions.  The labelled dataset consisted of the following 22 features:  
+To create a binary classification machine learning model to identify fraudulent transactions within a population of 555718 transactions.  The labeled dataset consisted of the following 22 features:  
 
 1. Trans_date_trans_time: Timestamp of the transaction (date and time).  
 2. Cc_num:Unique customer identification number.  
@@ -91,7 +91,7 @@ After performing a descriptive analysis of the data a number of features were dr
  - 'Region', an amalgamation of U.S. States according to the  [U.S. Bureau of Economic Analysis](https://www.bea.gov/).
  - 'Age_years', the age of the cardholder based on the difference between today's date and the cardholders DOB.
  - 'Distance_km', the distance between the cardholders latitude and longitude and the merchants latitude and longitude.
-4. **Encoding Features with few categories**: binary or get_dummies encoding was used to encode the 'catagories', 'gender', 'region',  features which had fewer than 20 members.
+4. **Encoding Features with few categories**: binary or get_dummies encoding was used to encode catagories: 'gender' and 'region'; features with fewer than 20 members.
 6. **Transformed Features**: 'amt' (Transaction Amount) due to the very high dispersion in this feature it was transformed by the natural log.  
 ![original amt distribution](img/amount.png)
 ![amt transformed to a log distribution](img/amount_log.png)
