@@ -1,50 +1,57 @@
 * Project4analysis by Nes Atar
 
-4.1.1 GEOGRAPHICAL ANALYSIS:
+ 4.1.1 GEOGRAPHICAL ANALYSIS:
 What are the most common states for card holders.
 As seen in the following bar graph; most common states for card holders are Texas, New York and Pennsylvania among others. This could be due to the size and population of the sates; bigger states have more population and more population equates to more merchants and transactions. Smaller states might have less Merchants and less population equating to less transactions. 4 of the top 5 states by transaction are in the top 5 states by population. the only state not in the top 5 by transaction is Florida despite that it’s the 3rd state for population. Maybe this company operates less in this state.
  
+![image](https://github.com/john-a-ellis/Credit_Card_Fraud/assets/148135912/ec161a06-166c-4342-bcac-c1ebb275068b)
+
 4.1.2 GEOGRAPHICAL ANALYSIS:
 What are the most common cities for cardholders?
 As seen in the following bar graph; most common cities for card holders are Phoenix, San Antonio and Indianapolis. Initially I thought the larger the city greater the transactions however our top 3 cities are not larger by population. which suggests a weak correlation between population and transaction counts. 
-![image](https://github.com/john-a-ellis/Credit_Card_Fraud/assets/148135912/ddf09824-869b-4184-a59b-a2645fb64495)
+![image](https://github.com/john-a-ellis/Credit_Card_Fraud/assets/148135912/cd7ac2af-dc0d-4486-8ee1-4ff702e2dfd2)
 
 4.2 GEOGRAPHICAL ANALYSIS:
 How does the population size of cities correlate with transaction volume?
 Initially we thought as city's population grew there would be more transactions but the bar graph above didn’t suggest that. In the scatter plot below showing the relationship between population and transactions in a city, this validates the idea that there isn’t a strong correlation between those two values. Scatter plot shows that there seems to be bands of transaction amounts where there many cities that total for example 200 or 650 transactions regardless of the population.
  
+![image](https://github.com/john-a-ellis/Credit_Card_Fraud/assets/148135912/893a1460-2c8d-4e32-b88f-ec86e9567f59)
+
 4.3 GEOGRAPHICAL ANALYSIS:
 Are there any geographical patterns in transaction amounts or types?
 As seen in the map below, most transactions are in the East of the country where population density is higher than the west. There is a relationship between population density of an area and where transactions occur.
-
-![image](https://github.com/john-a-ellis/Credit_Card_Fraud/assets/148135912/5d268ded-dd30-43e0-bc7f-ed46563ce35a)
-
+ 
+![image](https://github.com/john-a-ellis/Credit_Card_Fraud/assets/148135912/109e0c40-cb5e-48b6-aa70-f224e9167ac2)
+ 
 5.1 MERCHANT ANALYSIS:
 What are the most common merchants involved in transactions?
 Most common merchants involved in transactions are Kilback LLC, Cormier LLC, Schumm PLC followed by others. This could be due to the size of the merchant as well as its location.
  
+![image](https://github.com/john-a-ellis/Credit_Card_Fraud/assets/148135912/cae02718-5e39-4567-bfe5-2689004637a0)
+
 5.2 MERCHANT ANALYSIS:
 How do transaction amounts vary across different merchants
 The box plot below shows top 10 Merchants with the highest average transaction amount. I excluded the outliers for better visualization. All of the medians for these merchants are very similar, all the medians are around $6-$7 dollars. The middle 50% of transactions are all similar as well ranging roughly around $4-$9. All of the bottom lines start at about $1 suggesting lowest priced good at all these places is $1. The top 25% of all transactions are can vary a lot by merchant. The top lines show that maximum price is at $9-$17. None of the top 20 from above bar graph are in the top 10 in below boxplot, suggesting that most popular merchants are not the most expensive. For example, no-frills would have more transactions than Guess but no-frills transaction could be smaller in amount compared to Guess.
  
-![image](https://github.com/john-a-ellis/Credit_Card_Fraud/assets/148135912/22f5206d-78fe-45a5-8d3e-aebb560fd58b)
+![image](https://github.com/john-a-ellis/Credit_Card_Fraud/assets/148135912/ed9b4de7-705d-493b-9392-8a7dd1b3a618)
 
 5.3 MERCHANT ANALYSIS:
 Are there any trends or patterns in the location of merchants?
 Regardless of where you are average, transaction will be roughly the same. from below bar graph and the list of Fraud per region we can see that there isn’t seem to be a relationship between average transaction and fraud per region. Mid-east is where most fraudulent transactions and Rocky Mountain the least amount of fraudulent charges.
  
+![image](https://github.com/john-a-ellis/Credit_Card_Fraud/assets/148135912/d42a145c-a1b0-450c-b191-f3b618742d31)
+
 6.1 TRANSACTION TIME ANALYSIS
 What are the busiest times of day for transactions?
 After 11am there is a huge spike in the number of transactions. The noon hour could be due to people being on lunch and visiting the merchants while the rest of the day is people might be getting off work and visiting the merchants. The drop from 23:00 to 24:00 could be due to lots of places may choose to be closed at midnight.
- 
-![image](https://github.com/john-a-ellis/Credit_Card_Fraud/assets/148135912/074585ec-1fc4-4289-8878-082978c46b25)
+
+![image](https://github.com/john-a-ellis/Credit_Card_Fraud/assets/148135912/302cb6e0-0c1e-4571-b4fc-96832f5a728f)
 
 6.2 TRANSACTION TIME ANALYSIS:
 How do transaction volumes vary throughout the week?
 Monday, Tuesday and Sunday have the most transactions throughout the week. this could be due to all 3 days being the start of week. we can see from the bar graph that Thursday, Friday and Saturday have less transactions. Wednesday had the least transactions.
  
-![image](https://github.com/john-a-ellis/Credit_Card_Fraud/assets/148135912/8cce03af-dcd3-47f9-b60c-ba514082c379)
-
+![image](https://github.com/john-a-ellis/Credit_Card_Fraud/assets/148135912/406c51d6-9f0e-42a9-bba5-3e067242aa1e)
 
 ************************************************************************************************
 
