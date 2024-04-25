@@ -2,7 +2,7 @@
 Credit Card Fraud Detection Project 4 Team 6  (Nesihlan Atar, John Ellis, Gurans Limbu, Daniel Morris)  
 Dataset located on: 
 [Kaggle](https://www.kaggle.com/datasets/kelvinkelue/credit-card-fraud-prediction)  
-To run the notebooks supporting this analysis the Fraud_test.csv file must be placed in a folder called 'Resources' directly below the folder containg the notebooks.  
+To run the notebooks supporting this analysis the Fraud_test.csv file must be placed in a folder called 'Resources' directly below the folder containing the notebooks.  
 
 ## An Overview of the project and its purpose:  
 To create a binary classification machine learning model to identify fraudulent transactions within a population of 555718 transactions.  The labelled dataset consisted of the following 22 features:  
